@@ -21,6 +21,9 @@
         button {
             margin-top: 10px;
         }
+        #returnButton {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -29,6 +32,7 @@
     <button id="capture">Capture Photo</button>
     <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
     <a id="download" href="" download="photo.jpg" style="display:none;">Download Photo</a>
+    <button id="returnButton">Return</button>
 
     <script>
         const video = document.getElementById('video');
@@ -36,6 +40,7 @@
         const context = canvas.getContext('2d');
         const captureButton = document.getElementById('capture');
         const downloadLink = document.getElementById('download');
+        const returnButton = document.getElementById('returnButton');
 
         // Access the camera
         async function startCamera() {
@@ -61,11 +66,21 @@
             downloadLink.click(); // Trigger download
         }
 
+        // Return to the previous page or a specific URL
+        function returnToPreviousPage() {
+            window.history.back(); // Navigate back in history
+            // Or use a specific URL like this:
+            // window.location.href = 'http://example.com'; // Redirect to a specific URL
+        }
+
         // Initialize camera
         startCamera();
 
         // Add event listener for capture button
         captureButton.addEventListener('click', capturePhoto);
+
+        // Add event listener for return button
+        returnButton.addEventListener('click', returnToPreviousPage);
     </script>
 </body>
 </html>
