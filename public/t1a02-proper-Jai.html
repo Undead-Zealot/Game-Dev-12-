@@ -1,1 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Engine and Spotify Tab</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 10px;
+            min-height: 70px;
+            border-bottom: #bbb 1px solid;
+        }
+        header h1 {
+            text-align: center;
+            margin: 0;
+        }
+        .search-box {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .search-box input[type="text"] {
+            width: 50%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .search-box input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .search-box input[type="submit"]:hover {
+            background: #555;
+        }
+        .spotify-tab {
+            text-align: center;
+            margin-top: 30px;
+        }
+        iframe {
+            border: none;
+            width: 100%;
+            height: 380px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Search Engine and Spotify Tab</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Search Box -->
+        <div class="search-box">
+            <form action="https://www.google.com/search" method="get" target="_blank">
+                <input type="text" name="q" placeholder="Search the web...">
+                <input type="submit" value="Search">
+            </form>
+        </div>
+
+        <!-- Spotify Tab -->
+        <div class="spotify-tab">
+            <h2>Spotify Player</h2>
+            <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M" allow="encrypted-media"></iframe>
+        </div>
+    </div>
+</body>
+</html>
 
