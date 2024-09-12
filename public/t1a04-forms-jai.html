@@ -3,56 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Non-Functional Password Form</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-        .form-container {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .form-container h2 {
-            margin-bottom: 20px;
-        }
-        .form-container input {
-            display: block;
-            width: 90%;
-            margin-bottom: 10px;
-            padding: 8px;
-            font-size: 16px;
-        }
-        .form-container input[type="submit"] {
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
-        .form-container input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <title>Simple Form</title>
 </head>
 <body>
-    <div class="form-container">
-        <h2>Login</h2>
-        <form action="#" method="post">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+    <h1>Simple HTML Form</h1>
+    <form>
+        <!-- Text Input -->
+        <label for="text-input">Text Input:</label>
+        <input type="text" id="text-input" name="text-input"><br><br>
 
-            <input type="submit" value="Submit">
-        </form>
-    </div>
+        <!-- Password Input -->
+        <label for="password-input">Password Input:</label>
+        <input type="password" id="password-input" name="password-input"><br><br>
+
+        <!-- Radio Buttons -->
+        <label>Radio Buttons:</label><br>
+        <input type="radio" id="radio1" name="radio-group" value="option1">
+        <label for="radio1">Option 1</label><br>
+        <input type="radio" id="radio2" name="radio-group" value="option2">
+        <label for="radio2">Option 2</label><br>
+        <input type="radio" id="radio3" name="radio-group" value="option3">
+        <label for="radio3">Option 3</label><br><br>
+
+        <!-- Checkboxes -->
+        <label>Checkboxes:</label><br>
+        <input type="checkbox" id="checkbox1" name="checkbox-group" value="checkbox1">
+        <label for="checkbox1">Checkbox 1</label><br>
+        <input type="checkbox" id="checkbox2" name="checkbox-group" value="checkbox2">
+        <label for="checkbox2">Checkbox 2</label><br>
+        <input type="checkbox" id="checkbox3" name="checkbox-group" value="checkbox3">
+        <label for="checkbox3">Checkbox 3</label><br><br>
+
+        <!-- Dropdown Menu -->
+        <label for="dropdown">Dropdown Menu:</label>
+        <select id="dropdown" name="dropdown">
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+        </select><br><br>
+
+        <!-- Textarea -->
+        <label for="textarea">Textarea:</label><br>
+        <textarea id="textarea" name="textarea" rows="4" cols="50"></textarea><br><br>
+
+        <!-- Submit and Reset Buttons -->
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+
 </body>
 </html>
-
