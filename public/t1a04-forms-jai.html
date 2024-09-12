@@ -4,82 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Form</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-        .form-actions {
-            margin-top: 20px;
-        }
-    </style>
 </head>
 <body>
-
     <h1>Simple HTML Form</h1>
     <form>
         <!-- Text Input -->
-        <div class="form-group">
-            <label for="text-input">Text Input:</label>
-            <input type="text" id="text-input" name="text-input" placeholder="Enter text">
-        </div>
-
+        <label for="text-input">Text Input:</label>
+        <input type="text" id="text-input" name="text-input"><br><br>
         <!-- Password Input -->
-        <div class="form-group">
-            <label for="password-input">Password Input:</label>
-            <input type="password" id="password-input" name="password-input" placeholder="Enter password">
-        </div>
-
+        <label for="password-input">Password Input:</label>
+        <input type="password" id="password-input" name="password-input"><br><br>
         <!-- Radio Buttons -->
-        <div class="form-group">
-            <label>Radio Buttons: Why is this a radio button</label>
-            <label><input type="radio" name="radio-group" value="option1"> Option 1</label><br>
-            <label><input type="radio" name="radio-group" value="option2"> Option 2</label><br>
-            <label><input type="radio" name="radio-group" value="option3"> Option 3</label>
-        </div>
-
+        <label>Radio Buttons:</label><br>
+        <input type="radio" id="radio1" name="radio-group" value="option1">
+        <label for="radio1">Option 1</label><br>
+        <input type="radio" id="radio2" name="radio-group" value="option2">
+        <label for="radio2">Option 2</label><br>
+        <input type="radio" id="radio3" name="radio-group" value="option3">
+        <label for="radio3">Option 3</label><br><br>
         <!-- Checkboxes -->
-        <div class="form-group">
-            <label>Checkboxes: What are you? </label>
-            <label><input type="checkbox" name="checkbox-group" value="Human🧑"> Checkbox 1</label><br>
-            <label><input type="checkbox" name="checkbox-group" value="Alien 👽"> Checkbox 2</label><br>
-            <label><input type="checkbox" name="checkbox-group" value="Monster 🧛"> Checkbox 3</label>
-        </div>
-
+        <label>Checkboxes:</label><br>
+        <input type="checkbox" id="checkbox1" name="checkbox-group" value="checkbox1">
+        <label for="checkbox1">Checkbox 1</label><br>
+        <input type="checkbox" id="checkbox2" name="checkbox-group" value="checkbox2">
+        <label for="checkbox2">Checkbox 2</label><br>
+        <input type="checkbox" id="checkbox3" name="checkbox-group" value="checkbox3">
+        <label for="checkbox3">Checkbox 3</label><br><br>
         <!-- Dropdown Menu -->
-        <div class="form-group">
-            <label for="dropdown">Dropdown Menu:</label>
-            <select id="dropdown" name="choose the correct option! What is 20-15?">
-                <option value="option1">14</option>
-                <option value="option2">5</option>
-                <option value="option3">-124124213</option>
-            </select>
-        </div>
-
-        <!-- Textarea -->
-        <div class="form-group">
-            <label for="textarea">Textarea:</label>
-            <textarea id="textarea" name="textarea" rows="4" placeholder="Enter your message"></textarea>
-        </div>
-
-        <!-- Submit and Reset Buttons -->
-        <div class="form-actions">
-            <button type="submit">Submit</button>
-            <button type="reset">Reset</button>
-        </div>
-    </form>
-
-</body>
-</html>
+        <label for="dropdown">Dropdown Menu:</label>
+        <select id="dropdown" name="dropdown">
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
