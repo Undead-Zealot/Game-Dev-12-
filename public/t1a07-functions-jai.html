@@ -1,0 +1,70 @@
+<h1 align=center>This is a test for now (gpt made trying to recreate without help</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move Button</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        #moveButton {
+            position: absolute;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #popup {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border-radius: 5px;
+            font-size: 18px;
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+    <button id="moveButton" onclick="moveButton()">Click me!</button>
+    <div id="popup">Hurray you found me!</div>
+
+    <script>
+        function moveButton() {
+            const button = document.getElementById('moveButton');
+            const popup = document.getElementById('popup');
+            
+            // Get the dimensions of the button and the viewport
+            const buttonWidth = button.offsetWidth;
+            const buttonHeight = button.offsetHeight;
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+
+            // Calculate a random position within the viewport
+            const randomX = Math.random() * (viewportWidth - buttonWidth);
+            const randomY = Math.random() * (viewportHeight - buttonHeight);
+
+            // Move the button to the random position
+            button.style.left = `${randomX}px`;
+            button.style.top = `${randomY}px`;
+
+            // Show the popup
+            popup.style.display = 'block';
+
+            // Hide the popup after 2 seconds
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
