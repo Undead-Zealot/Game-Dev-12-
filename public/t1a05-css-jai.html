@@ -1,5 +1,59 @@
-<h1 align=Center><b> Css background color and other styles </b> </h1>
-<body style="background: linear-gradient(#FF0000, #5D3FD3); 
-   <b style="color:blue;background-color:white;"> Testing???? </b>
-  
-<i style="border-style:groove;"> Italic??</i>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Changing Border</title>
+    <style>
+        body {
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            margin: 0; 
+            background-color: lightblue; 
+        }
+
+        h1 {
+            margin: 20px 0; 
+            text-align: center; 
+            position: absolute; 
+            top: 20px; 
+        }
+
+        @keyframes borderColorChange {
+            0% {
+                border-color: red;
+            }
+            25% {
+                border-color: blue;
+            }
+            50% {
+                border-color: green;
+            }
+            75% {
+                border-color: yellow;
+            }
+            100% {
+                border-color: red; 
+            }
+        }
+
+        .word-box {
+            display: inline-block; 
+            padding: 10px 20px; 
+            background-color: orange; 
+            border: 10px solid; 
+            animation: borderColorChange 3s infinite; 
+            border-radius: 10px; 
+            font-style: italic; 
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS and Borders/Italics</h1>
+    <div class="word-box">
+       <b> Color Changing Border </b>
+    </div>
+</body>
+</html>
