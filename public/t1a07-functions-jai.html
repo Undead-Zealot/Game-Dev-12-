@@ -43,24 +43,24 @@
             const button = document.getElementById('moveButton');
             const popup = document.getElementById('popup');
             
-            // Get the dimensions of the button and the viewport
+            // dimentions
             const buttonWidth = button.offsetWidth;
             const buttonHeight = button.offsetHeight;
             const viewportWidth = window.innerWidth;
             const viewportHeight = window.innerHeight;
 
-            // Calculate a random position within the viewport
+            // random pos
             const randomX = Math.random() * (viewportWidth - buttonWidth);
             const randomY = Math.random() * (viewportHeight - buttonHeight);
 
-            // Move the button to the random position
+            // move said button
             button.style.left = `${randomX}px`;
             button.style.top = `${randomY}px`;
 
             // Show the popup
             popup.style.display = 'block';
 
-            // Hide the popup after 2 seconds
+            // popup dissapears in 2 seconds
             setTimeout(() => {
                 popup.style.display = 'none';
             }, 2000);
