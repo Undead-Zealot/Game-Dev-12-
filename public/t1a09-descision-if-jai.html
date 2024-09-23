@@ -1,13 +1,29 @@
-<body style="background-color: rgb(136, 126, 223);">
-</body>
+<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Descisions</title>
+    <title>Decisions</title>
+    <style>
+        body {
+            background-color: rgb(136, 126, 223);
+        }
+    </style>
 </head>
 <body>
+    <h1 align="center">Functions</h1>
+    
     <input type="text" id="wordInput" placeholder="Type something..." />
     <p id="result"></p>
+    
+    <b>Some keywords to use:</b>
+    <ol>
+        <li>Green Blue</li>
+        <li>2+2</li>
+        <li>spook</li>
+        <li>halloween</li>
+        <li></li>
+        <li>...</li> <!-- Placeholder for future additions -->
+    </ol>
 
     <script>
         const input = document.getElementById('wordInput');
@@ -18,34 +34,29 @@
             result.textContent = ''; // Clear previous result
 
             if (value.includes('blue') && value.includes('green')) {
-                // number 1 color
-                result.textContent = 'color gradient: blue and green';
-                  document.body.style.background = 'linear-gradient(to right, blue, green)'
-                // add extra code here
+                result.textContent = 'Color gradient: blue and green';
+                document.body.style.background = 'linear-gradient(to right, blue, green)';
             } else if (value.includes('heaven')) {
-                // Code for when only word1 is detected
                 result.textContent = 'Detected: fiction';
-                // add extra code here
+                // Additional code can be added here
             } else if (value.includes('hell')) {
-                // Code for when only word2 is detected
                 result.textContent = 'Detected: heresy';
-                // add extra code here
+                // Additional code can be added here
             } else if (value.includes('hell')) {
-                // Code for when only word2 is detected
                 result.textContent = 'Detected: heresy';
-                // add extra code here
-            }  else if (value.includes('hell')) {
-                // Code for when only word2 is detected
+                // Additional code can be added here
+            } else if (value.includes('hell')) {
                 result.textContent = 'Detected: heresy';
-                // add extra code here
-            }  else if (value.includes('hell')) {
-                // Code for when only word2 is detected
+                // Additional code can be added here
+            } else if (value.includes('hell')) {
                 result.textContent = 'Detected: heresy';
-                // add extra code here
-            }  else if (value.includes('hell')) {
-                // Code for when only word2 is detected
+                // Additional code can be added here
+            } else if (value.includes('hell')) {
                 result.textContent = 'Detected: heresy';
-                // add extra code here
+                // Additional code can be added here
+            } else if (value === '') {
+                result.textContent = ''; // Clear result if input is empty
+                document.body.style.background = 'rgb(136, 126, 223)'; // Reset background
             }
         });
     </script>
