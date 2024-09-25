@@ -21,7 +21,7 @@
         <li>2+2</li>
         <li>spook</li>
         <li>halloween</li>
-        <li></li>
+        <li>dont use .</li>
         <li>...</li> <!-- Placeholder for future additions -->
     </ol>
 
@@ -36,22 +36,25 @@
             if (value.includes('blue') && value.includes('green')) {
                 result.textContent = 'Color gradient: blue and green';
                 document.body.style.background = 'linear-gradient(to right, blue, green)';
-            } else if (value.includes('heaven')) {
-                result.textContent = 'Detected: fiction';
+            } else if (value.includes('2+2')) {
+                result.textContent = 'Detected: answer is 4';
+                // codes hehehehe
+            } else if (value.includes('spook')) {
+                result.textContent = 'Detected: spooky scary skeletons';
                 // Additional code can be added here
-            } else if (value.includes('hell')) {
+            } else if (value.includes('haloween')) {
+                result.textContent = 'Detected: pumpkin jumpscare time';
+                // Additional code can be added here
+            } else if (value.includes('.')) {
+                result.textContent = 'Detected: . kaboom';
+                // Additional code can be added here
+            } else if (value.includes('6')) {
                 result.textContent = 'Detected: heresy';
                 // Additional code can be added here
-            } else if (value.includes('hell')) {
+            } else if (value.includes('7')) {
                 result.textContent = 'Detected: heresy';
                 // Additional code can be added here
-            } else if (value.includes('hell')) {
-                result.textContent = 'Detected: heresy';
-                // Additional code can be added here
-            } else if (value.includes('hell')) {
-                result.textContent = 'Detected: heresy';
-                // Additional code can be added here
-            } else if (value.includes('hell')) {
+            } else if (value.includes('8')) {
                 result.textContent = 'Detected: heresy';
                 // Additional code can be added here
             } else if (value === '') {
