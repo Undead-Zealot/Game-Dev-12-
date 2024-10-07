@@ -1,17 +1,40 @@
-<h1 align=center> Variables </h1>
-<body style="background-color: lightblue;"></body>
-<body> 
-  Input:<input type=text id="myIn01" value="1"><br>
-     Input:<input type=text id="myIn02" value="5"><br>
-    <input type=button value="add and fix" onclick="{
-    myTotal = document.getElementById('myIn01').value + document.getElementById('myIn02').value
-  document.getElementById('myDiv01').innerHTML = ' Your Answer is ' + myTotal
-  }"> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variables</title>
+    <style>
+        body {
+            background-color: lightblue;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Variables</h1>
+    Input: <input type="text" id="myIn01" value="1"><br>
+    Input: <input type="text" id="myIn02" value="5"><br>
+
+    <input type="button" value="add and fix" onclick="addAndFix()">
     <div id="myDiv01">...</div>
-  <input type=button value="add2 and fix" onclick="{
-    let myX = document.getElementById('myIn01').value
-    let myY =  document.getElementById('myIn02').value
-    let myTotal = myX + myY
-      document.getElementById('myIn01').innerHTML = ' Your answer is ' + myTotal}"><br><br>
-  
+
+    <input type="button" value="add2 and fix" onclick="add2AndFix()"><br><br>
+
+    <script>
+        function addAndFix() {
+            let myX = parseFloat(document.getElementById('myIn01').value);
+            let myY = parseFloat(document.getElementById('myIn02').value);
+            let myTotal = myX + myY;
+            document.getElementById('myDiv01').innerHTML = 'Your Answer is ' + myTotal;
+        }
+
+        function add2AndFix() {
+            let myX = parseFloat(document.getElementById('myIn01').value);
+            let myY = parseFloat(document.getElementById('myIn02').value);
+            let myTotal = myX + myY;
+            document.getElementById('myDiv01').innerHTML = 'Your answer is ' + myTotal;
+        }
+    </script>
 </body>
+</html>
