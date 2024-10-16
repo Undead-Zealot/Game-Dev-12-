@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,16 +21,16 @@
 
     <script>
         function addAndFix() {
-            let myX = parseFloat(document.getElementById('myIn01').value);
-            let myY = parseFloat(document.getElementById('myIn02').value);
-            let myTotal = myX + myY;
+            let myX = document.getElementById('myIn01').value; // Get the value as a string
+            let myY = document.getElementById('myIn02').value; // Get the value as a string
+            let myTotal = myX + myY; // Concatenate the strings
             document.getElementById('myDiv01').innerHTML = 'Your Answer is ' + myTotal;
         }
 
         function add2AndFix() {
             let myX = parseFloat(document.getElementById('myIn01').value);
             let myY = parseFloat(document.getElementById('myIn02').value);
-            let myTotal = myX + myY;
+            let myTotal = myX + myY; // Add the numbers
             document.getElementById('myDiv01').innerHTML = 'Your answer is ' + myTotal;
         }
     </script>
