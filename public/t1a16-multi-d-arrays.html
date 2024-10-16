@@ -1,11 +1,78 @@
-<h1 align=center> Multi d array </h1>
+<h1 align=center> Multi Dimentional Array </h1>
+<body style="background-color: lightblue;">
+</body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random 3D Array</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 10px;
+        }
+        td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="randomArray"></div>
+
 <script>
-  let myMax = 3
-  let myArrayManual = new Array(myMax)
-  let myArrayAuto = new Array(myMax)
+function generateRandom3DArray(depth, rows, columns, min = 1, max = 100) {
+    let array3D = [];
+
+    for (let i = 0; i < depth; i++) {
+        let array2D = [];
+        
+        for (let j = 0; j < rows; j++) {
+            let row = [];
+            
+            for (let k = 0; k < columns; k++) {
+                let randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
+                row.push(randomValue);
+            }
+            
+            array2D.push(row);
+        }
+        
+        array3D.push(array2D);
+    }
+
+    return array3D;
+}
+
+function display3DArray(array3D) {
+    const container = document.getElementById('randomArray');
+    container.innerHTML = '';
+
+    array3D.forEach((array2D, depthIndex) => {
+        const table = document.createElement('table');
+        const caption = document.createElement('caption');
+        caption.innerText = `Slice ${depthIndex + 1}`;
+        table.appendChild(caption);
+        
+        array2D.forEach(row => {
+            const tr = document.createElement('tr');
+            row.forEach(value => {
+                const td = document.createElement('td');
+                td.innerText = value;
+                tr.appendChild(td);
+            });
+            table.appendChild(tr);
+        });
+        
+        container.appendChild(table);
+    });
+}
+
+// Generate and display a random 3D array
+const random3DArray = generateRandom3DArray(2, 2, 3);
+display3DArray(random3DArray);
 </script>
 
-Input:<input=text id="myFirstName" value="fred"> <br>
-
-<input type=button value="Show Manual Array" onclick="{
-  document.getElementById('myDiv01').innerhtml = ''
+</body>
+</html>
