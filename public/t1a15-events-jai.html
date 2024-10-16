@@ -5,7 +5,8 @@
     <style>
         #myButton {
             padding: 10px 20px;
-            font-size: 16px; 
+            font-size: 16px;
+            margin: 10px;
         }
         #popup {
             display: none; 
@@ -36,7 +37,14 @@
 <body style="background-color: lightblue;">
     <h1 align="center">Events</h1>
     <input type="text" id="myInput" placeholder="Type something...">
-    <button id="myButton">Hover or Click Me!</button>
+    
+    <button id="clickButton">Click Me!</button>
+    <button id="mouseoverButton">Mouse Over Me!</button>
+    <button id="focusButton">Focus Input!</button>
+    <button id="blurButton">Blur Input!</button>
+    <button id="keydownButton">Key Down!</button>
+    <button id="keyupButton">Key Up!</button>
+    <button id="inputButton">Input Change!</button>
 
     <div id="popup">
         <div id="popupContent">
@@ -55,23 +63,21 @@
             popup.style.display = "block";
         }
 
-        document.getElementById('myButton').onclick = function() {
+        document.getElementById('clickButton').onclick = function() {
             showPopup('Button clicked!');
         };
 
-        document.getElementById('myButton').onmouseover = function() {
+        document.getElementById('mouseoverButton').onmouseover = function() {
             showPopup('Mouse over the button!');
         };
 
-        document.getElementById('myButton').onmouseout = function() {
-            showPopup('Mouse left the button!');
-        };
-
-        document.getElementById('myInput').onfocus = function() {
+        document.getElementById('focusButton').onclick = function() {
+            document.getElementById('myInput').focus();
             showPopup('Input focused!');
         };
 
-        document.getElementById('myInput').onblur = function() {
+        document.getElementById('blurButton').onclick = function() {
+            document.getElementById('myInput').blur();
             showPopup('Input lost focus!');
         };
 
