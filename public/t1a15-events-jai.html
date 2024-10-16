@@ -1,4 +1,112 @@
-<h1 align=center> Events </h1>
 <body style="background-color: lightblue;">
 </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: lightblue;
+            padding: 50px;
+        }
+        #myButton {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        #popup {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        #popupContent {
+            background-color: white;
+            margin: 15% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; 
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Combined HTML Events</h1>
+    <input type="text" id="myInput" placeholder="Type something...">
+    <button id="myButton">Hover or Click Me!</button>
+
+    <div id="popup">
+        <div id="popupContent">
+            <span class="close" id="closePopup">&times;</span>
+            <div id="output">Event Output:</div>
+        </div>
+    </div>
+
+    <script>
+        const output = document.getElementById('output');
+        const popup = document.getElementById('popup');
+        const closePopup = document.getElementById('closePopup');
+
+        function showPopup(message) {
+            output.innerHTML += `<br>${message}`;
+            popup.style.display = "block";
+        }
+
+        document.getElementById('myButton').onclick = function() {
+            showPopup('Button clicked!');
+        };
+
+        document.getElementById('myButton').onmouseover = function() {
+            showPopup('Mouse over the button!');
+        };
+
+        document.getElementById('myButton').onmouseout = function() {
+            showPopup('Mouse left the button!');
+        };
+
+        document.getElementById('myInput').onfocus = function() {
+            showPopup('Input focused!');
+        };
+
+        document.getElementById('myInput').onblur = function() {
+            showPopup('Input lost focus!');
+        };
+
+        document.getElementById('myInput').onkeydown = function() {
+            showPopup('Key down in input!');
+        };
+
+        document.getElementById('myInput').onkeyup = function() {
+            showPopup('Key up in input!');
+        };
+
+        document.getElementById('myInput').oninput = function() {
+            showPopup('Input changed: ' + this.value);
+        };
+
+        closePopup.onclick = function() {
+            popup.style.display = "none";
+            output.innerHTML = "Event Output:";
+        };
+
+        window.onclick = function(event) {
+            if (event.target === popup) {
+                popup.style.display = "none";
+                output.innerHTML = "Event Output:";
+            }
+        };
+    </script>
+</body>
+</html>
 
