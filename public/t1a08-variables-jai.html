@@ -21,16 +21,16 @@
 
     <script>
         function addAndFix() {
-            let myX = document.getElementById('myIn01').value; // Get the value as a string
-            let myY = document.getElementById('myIn02').value; // Get the value as a string
-            let myTotal = myX + myY; // Concatenate the strings
+            let myX = document.getElementById('myIn01').value; 
+            let myY = document.getElementById('myIn02').value; 
+            let myTotal = myX + myY; 
             document.getElementById('myDiv01').innerHTML = 'Your Answer is ' + myTotal;
         }
 
         function add2AndFix() {
             let myX = parseFloat(document.getElementById('myIn01').value);
             let myY = parseFloat(document.getElementById('myIn02').value);
-            let myTotal = myX + myY; // Add the numbers
+            let myTotal = myX + myY; 
             document.getElementById('myDiv01').innerHTML = 'Your answer is ' + myTotal;
         }
     </script>
