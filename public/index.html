@@ -1,56 +1,72 @@
-Jai Sidhu 
-<h1 align=center>below are the assignments!!</h1>
-
-<a href="https://github.com/Undead-Zealot/Game-Dev-12-">Github Link</a>
-
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assignments</title>
 </head>
 <body>
+    <h1 align="center">Below are the assignments!</h1>
+
+    <a href="https://github.com/Undead-Zealot/Game-Dev-12-">Github Link</a>
+
     <ul>
         <li>Assignments
-            <ol>
-                <li> <a href="https://undead-zealot.github.io/Game-Dev-12-/public/t1a01-basic.html">T1a01-basic </a> </li>
-                <li> <a href="https://undead-zealot.github.io/Game-Dev-12-/public/t1a02-proper-Jai.html">T1a02 proper </a> </li>
-                <li> <a href="https://undead-zealot.github.io/Game-Dev-12-/public/t1a03-table-jai.html">T1a03 table </a> </li>
-                <li> <a href="https://undead-zealot.github.io/Game-Dev-12-/public/t1a04-forms-jai.html">T1a04 Forms </a> </li>
-                <li> <a href="https://undead-zealot.github.io/Game-Dev-12-/public/t1a05-css-jai.html">T1a05 Css </a> </li>
-                <li> <a href="https://undead-zealot.github.io/Game-Dev-12-/public/t1a06-in-out-jai.html">T1a06 In/Out </a> </li>
-                <li> <a href="https://undead-zealot.github.io/Game-Dev-12-/public/t1a07-functions-jai.html">T1a07 Functions</a> </li>
-                <li> <a href="https://undead-zealot.github.io/Game-Dev-12-/public/t1a08-variables-jai.html">T1a08 Variables</a> </li>
-                <li> <a href="https://undead-zealot.github.io/Game-Dev-12-/public/t1a09-descision-if-jai.html">T1a09 Descisions</a> </li>
-                <li> <a href="https://undead-zealot.github.io/Game-Dev-12-/public/t1a10-loops-Jai.html">T1a10 Loops</a> </li>
-                <li> <a href="https://undead-zealot.github.io/Game-Dev-12-/public/t1a11-arrays-jai.html">T1a11 Arrays </a> </li>
-                <li> <a href="https://undead-zealot.github.io/Game-Dev-12-/public/t1a12-objects-jai.html">T1a12 Objects </a> </li>
-                <li> <a href="https://undead-zealot.github.io/Game-Dev-12-/public/t1a13-json-jai.html">T1a13 Json </a> </li>
-                <li> <a href="https://undead-zealot.github.io/Game-Dev-12-/public/t1a14-objects-and-arrays-jai">T1a14 Objects and Arrays </a> </li>
-                <li> <a href="https://undead-zealot.github.io/Game-Dev-12-/public/t1a15-events-jai.html">T1a15 Events </a> </li>
-                <li> <a href="https://undead-zealot.github.io/Game-Dev-12-/public/t1a16-multi-d-arrays.html">T1a16 Multi Dimentional Arrays </a> </li>
+            <ol id="assignmentList">
             </ol>
         </li> 
     </ul>
+
+    <a href="https://undead-zealot.github.io/Game-Dev-12-/public/x-files.html">X-files</a>
+
+    <h1 align="right">
+        <button id="returnButton">Return</button>
+        <script>
+            const returnButton = document.getElementById('returnButton');
+            function returnToPreviousPage() {
+                window.history.back(); 
+            }
+            returnButton.addEventListener('click', returnToPreviousPage);
+        </script>
+    </h1>
+
+    <body style="background-color: lightblue;"></body>
+
+    <script>
+        const baseUrl = "https://undead-zealot.github.io/Game-Dev-12-/";
+
+        const assignments = [
+            { path: "public/t1a01-basic.html", title: "T1a01-basic" },
+            { path: "public/t1a02-proper-Jai.html", title: "T1a02 proper" },
+            { path: "public/t1a03-table-jai.html", title: "T1a03 table" },
+            { path: "public/t1a04-forms-jai.html", title: "T1a04 Forms" },
+            { path: "public/t1a05-css-jai.html", title: "T1a05 Css" },
+            { path: "public/t1a06-in-out-jai.html", title: "T1a06 In/Out" },
+            { path: "public/t1a07-functions-jai.html", title: "T1a07 Functions" },
+            { path: "public/t1a08-variables-jai.html", title: "T1a08 Variables" },
+            { path: "public/t1a09-descision-if-jai.html", title: "T1a09 Decisions" },
+            { path: "public/t1a10-loops-Jai.html", title: "T1a10 Loops" },
+            { path: "public/t1a11-arrays-jai.html", title: "T1a11 Arrays" },
+            { path: "public/t1a12-objects-jai.html", title: "T1a12 Objects" },
+            { path: "public/t1a13-json-jai.html", title: "T1a13 JSON" },
+            { path: "public/t1a14-objects-and-arrays-jai.html", title: "T1a14 Objects and Arrays" },
+            { path: "public/t1a15-events-jai.html", title: "T1a15 Events" },
+            { path: "public/t1a16-multi-d-arrays.html", title: "T1a16 Multi-Dimensional Arrays" },
+            { path: "public/t1a17- move-jai.html", title: "T1a17 Move" },
+            { path: "public/t1a18-extend-class-jai.html", title: "T1a18 Extend Class" },
+        ];
+
+        function renderAssignments() {
+            const assignmentList = document.getElementById('assignmentList');
+            assignments.forEach(({ path, title }) => {
+                const listItem = document.createElement('li');
+                const anchor = document.createElement('a');
+                anchor.href = baseUrl + path;
+                anchor.textContent = title;
+                listItem.appendChild(anchor);
+                assignmentList.appendChild(listItem);
+            });
+        }
+
+        renderAssignments();
+    </script>
 </body>
 </html>
-
-<a href="https://undead-zealot.github.io/Game-Dev-12-/public/x-files.html">X-files</a>
-
-<h1 align=right>  <button id="returnButton">Return</button>
-    <script>  const returnButton = document.getElementById('returnButton');
-function returnToPreviousPage() {
-            window.history.back(); 
-returnButton.addEventListener('click', returnToPreviousPage);
-    
-    </script> 
-            <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Change Background Color</title>
-</head>
-<body style="background-color: lightblue;">
-</body>
-    </h1>
-    
