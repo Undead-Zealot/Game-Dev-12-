@@ -1,37 +1,33 @@
-<h1 align="center"> Classes</h1>
+<h1 align="center">Classes</h1>
 
 <script>
+    class MyAnimal { 
+        constructor(passName, passAge) {
+            this.myName = passName;
+            this.myAge = passAge;
+        }
 
-    class myAnimal { 
-        Constructor(passName, passAge){
-        this.myName = passName;
-        this.myAge = passAge;
-    }
-    myShow(){
-        document.getElementById('mydiv01').innerHTML = 'hello' this.myName '<br>'
-    }
-
-    }
-    class myCat extends myAnimal {
-
-        myShow(){
-            document.getElementById('myDiv01').innerHTML = this.myName ' is a great cat <br>'
+        myShow() {
+            document.getElementById('myDiv01').innerHTML = 'Hello ' + this.myName + '<br>';
         }
     }
 
+    class MyCat extends MyAnimal {
+        myShow() {
+            document.getElementById('myDiv01').innerHTML = this.myName + ' is a great cat <br>';
+        }
+    }
 </script>
 
-<input type="button" value="Example class set and show class animal" onclick = "{
-    myDog = new myAnimal('Snickers', 5)
-    myDog.myShow()
+<input type="button" value="Example class set and show class animal" onclick="{
+    let myDog = new MyAnimal('Snickers', 5);
+    myDog.myShow();
 }"><br><br>
 
-<input type=text id="mytex01" value="may be useful later"> <br>
-<input type="button" value="Example extend calss animal as cat" onclick="{
-
-    myPet= new myCat('fluffy' 14)
-    myPet.myShow()
-
+<input type="text" id="mytex01" value="may be useful later"> <br>
+<input type="button" value="Example extend class animal as cat" onclick="{
+    let myPet = new MyCat('Fluffy', 14);
+    myPet.myShow();
 }"><br><br>
 
 <div id="myDiv01">...</div>
