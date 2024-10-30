@@ -38,6 +38,15 @@
             }
         }
 
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
         .word-box {
             display: inline-block; 
             padding: 10px 20px; 
@@ -50,6 +59,7 @@
 
         .image-container {
             margin-bottom: 20px; 
+            animation: spin 10s linear infinite; /* Spin animation */
         }
 
         img {
@@ -67,8 +77,8 @@
     </div>
 
     <audio controls autoplay loop>
-        <source src="path/to/your/music.mp3" type="audio/mpeg"> // replace this when using audio
-    
+        <source src="path/to/bury_the_light.mp3" type="audio/mpeg"> <!-- Replace with the correct path -->
+        Your browser does not support the audio element.
     </audio>
 
     <div class="word-box">
