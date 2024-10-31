@@ -1,11 +1,118 @@
-(Under construction)
-8 buttons
-1 says a 5 times in a text box
-2 loops for finding 2
-3 loops a constant check that if you hover over a certain object for to long (3 seconds)
-4 a loop that shows a loop turning off and on
-5 loop check in text box to find 5 when 5 is done it loops 5 across the page for 2 seconds
-6
-7 loop 
-8 loops a script to crash the page
+<head>
+    <title>Loop Functions (Under Construction)</title>
+    <style>
+        body {
+            background-color: rgb(136, 126, 223);
+            text-align: center;
+            color: white;
+        }
+        #textBox {
+            width: 300px;
+            height: 100px;
+            margin: 10px auto;
+            background-color: white;
+            color: black;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Loop Functions (Under Construction)</h1>
 
+    <textarea id="textBox" placeholder="Output will appear here..."></textarea>
+
+    <br>
+    <button onclick="printFives()">Button 1: Print '5' Five Times</button>
+    <button onclick="findTwos()">Button 2: Loop to Find '2'</button>
+    <button id="hoverButton" onmouseover="hoverCheck()">Button 3: Hover Check (3 seconds)</button>
+    <button onclick="toggleLoop()">Button 4: Toggle Loop</button>
+    <button onclick="findAndLoopFive()">Button 5: Loop '5' Across the Page</button>
+    <button onclick="loopSix()">Button 6: Loop '6' Every Second</button>
+    <button onclick="loopMessage()">Button 7: Loop a Message</button>
+    <button onclick="geLoop()">Button 8: Loop 'GE'</button>
+
+    <script>
+        function printFives() {
+            const textBox = document.getElementById('textBox');
+            textBox.value = '';
+            for (let i = 0; i < 5; i++) {
+                textBox.value += '5\n';
+            }
+        }
+
+        function findTwos() {
+            const textBox = document.getElementById('textBox');
+            textBox.value = '';
+            for (let i = 0; i < 10; i++) {
+                if (i === 2) {
+                    textBox.value += 'Found 2!\n';
+                }
+            }
+        }
+
+        let hoverTimeout;
+        function hoverCheck() {
+            const textBox = document.getElementById('textBox');
+            textBox.value = 'Hovering...';
+            hoverTimeout = setTimeout(() => {
+                textBox.value = 'Hovered for 3 seconds!';
+            }, 3000);
+        }
+
+        document.getElementById('hoverButton').addEventListener('mouseleave', () => {
+            clearTimeout(hoverTimeout);
+        });
+
+        let toggle = false;
+        function toggleLoop() {
+            const textBox = document.getElementById('textBox');
+            toggle = !toggle;
+            textBox.value = toggle ? 'Looping ON' : 'Looping OFF';
+            if (toggle) {
+                const interval = setInterval(() => {
+                    textBox.value = textBox.value === 'Looping ON' ? 'Looping OFF' : 'Looping ON';
+                }, 1000);
+                setTimeout(() => clearInterval(interval), 5000);
+            }
+        }
+
+        function findAndLoopFive() {
+            const textBox = document.getElementById('textBox');
+            textBox.value = '';
+            for (let i = 0; i < 5; i++) {
+                textBox.value += '5 ';
+            }
+            setTimeout(() => {
+                textBox.value = '';
+            }, 2000);
+        }
+
+        function loopSix() {
+            const textBox = document.getElementById('textBox');
+            textBox.value = '';
+            const interval = setInterval(() => {
+                textBox.value += '6\n';
+            }, 1000);
+            setTimeout(() => clearInterval(interval), 10000);
+        }
+
+        function loopMessage() {
+            const textBox = document.getElementById('textBox');
+            textBox.value = '';
+            const interval = setInterval(() => {
+                textBox.value += 'This is a looping message!\n';
+            }, 1500);
+            setTimeout(() => clearInterval(interval), 10000);
+        }
+
+        function geLoop() {
+            const textBox = document.getElementById('textBox');
+            textBox.value = '';
+            const interval = setInterval(() => {
+                textBox.value += 'GE\n';
+            }, 2000);
+            setTimeout(() => clearInterval(interval), 10000);
+        }
+    </script>
+</body>
+</html>
