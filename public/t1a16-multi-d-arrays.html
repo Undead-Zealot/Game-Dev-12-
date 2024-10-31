@@ -3,8 +3,6 @@
 </body>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random 3D Array</title>
     <style>
         table {
@@ -52,7 +50,7 @@ function display3DArray(array3D) {
     array3D.forEach((array2D, depthIndex) => {
         const table = document.createElement('table');
         const caption = document.createElement('caption');
-        caption.innerText = `Slice ${depthIndex + 1}`;
+        caption.innerText = `Pizza slice ${depthIndex + 1}`;
         table.appendChild(caption);
         
         array2D.forEach(row => {
