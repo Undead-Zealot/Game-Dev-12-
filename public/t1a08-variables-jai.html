@@ -23,10 +23,10 @@
     Input 2: <input type="text" id="myIn04" value="7"><br>
     <input type="button" value="Add2 and Fix" onclick="add2AndFix()"><br><br>
 
-    <h2>New Addition</h2>
+    <h2>Subtraction</h2>
     Input 1: <input type="text" id="myIn05" value="10"><br>
-    Input 2: <input type="text" id="myIn06" value="15"><br>
-    <input type="button" value="Add3 and Fix" onclick="add3AndFix()"><br>
+    Input 2: <input type="text" id="myIn06" value="5"><br>
+    <input type="button" value="Subtract and Fix" onclick="subtractAndFix()"><br>
     <div id="myDiv02">...</div>
 
     <script>
@@ -44,10 +44,10 @@
             document.getElementById('myDiv01').innerHTML = 'Your answer is ' + myTotal;
         }
 
-        function add3AndFix() {
+        function subtractAndFix() {
             let myX = parseFloat(document.getElementById('myIn05').value);
             let myY = parseFloat(document.getElementById('myIn06').value);
-            let myTotal = myX + myY; 
+            let myTotal = myX - myY; 
             document.getElementById('myDiv02').innerHTML = 'Your answer is ' + myTotal;
         }
     </script>
