@@ -11,13 +11,23 @@
 </head>
 <body>
     <h1>Variables</h1>
-    Input: <input type="text" id="myIn01" value="1"><br>
-    Input: <input type="text" id="myIn02" value="5"><br>
-
-    <input type="button" value="add and fix" onclick="addAndFix()">
+    
+    <h2>Addition</h2>
+    Input 1: <input type="text" id="myIn01" value="1"><br>
+    Input 2: <input type="text" id="myIn02" value="5"><br>
+    <input type="button" value="Add and Fix" onclick="addAndFix()">
     <div id="myDiv01">...</div>
 
-    <input type="button" value="add2 and fix" onclick="add2AndFix()"><br><br>
+    <h2>Addition with Parsing</h2>
+    Input 1: <input type="text" id="myIn03" value="3"><br>
+    Input 2: <input type="text" id="myIn04" value="7"><br>
+    <input type="button" value="Add2 and Fix" onclick="add2AndFix()"><br><br>
+
+    <h2>New Addition</h2>
+    Input 1: <input type="text" id="myIn05" value="10"><br>
+    Input 2: <input type="text" id="myIn06" value="15"><br>
+    <input type="button" value="Add3 and Fix" onclick="add3AndFix()"><br>
+    <div id="myDiv02">...</div>
 
     <script>
         function addAndFix() {
@@ -28,10 +38,17 @@
         }
 
         function add2AndFix() {
-            let myX = parseFloat(document.getElementById('myIn01').value);
-            let myY = parseFloat(document.getElementById('myIn02').value);
+            let myX = parseFloat(document.getElementById('myIn03').value);
+            let myY = parseFloat(document.getElementById('myIn04').value);
             let myTotal = myX + myY; 
             document.getElementById('myDiv01').innerHTML = 'Your answer is ' + myTotal;
+        }
+
+        function add3AndFix() {
+            let myX = parseFloat(document.getElementById('myIn05').value);
+            let myY = parseFloat(document.getElementById('myIn06').value);
+            let myTotal = myX + myY; 
+            document.getElementById('myDiv02').innerHTML = 'Your answer is ' + myTotal;
         }
     </script>
 </body>
