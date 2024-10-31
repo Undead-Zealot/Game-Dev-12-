@@ -1,16 +1,17 @@
-<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Decisions (Under construction)</title>
+    <title>Decisions (Under Construction)</title>
     <style>
         body {
             background-color: rgb(136, 126, 223);
+            text-align: center;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <h1 align="center">Functions (Under construction) </h1>
+    <h1>Functions (Under Construction)</h1>
     
     <input type="text" id="wordInput" placeholder="Type something..." />
     <p id="result"></p>
@@ -22,6 +23,13 @@
         <li>spook</li>
         <li>halloween</li>
         <li>dont use .</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>hello</li>
+        <li>goodbye</li>
+        <li>help</li>
+        <li>joke</li>
         <li>...</li> 
     </ol>
 
@@ -38,25 +46,27 @@
                 document.body.style.background = 'linear-gradient(to right, blue, green)';
             } else if (value.includes('2+2')) {
                 result.textContent = 'Detected: answer is 4';
-                // codes hehehehe
             } else if (value.includes('spook')) {
                 result.textContent = 'Detected: spooky scary skeletons';
-                // Additional code can be added here
             } else if (value.includes('halloween')) {
                 result.innerHTML = 'Detected: pumpkin jumpscare time' +
-                '<img width="250" src="https://cdn.britannica.com/26/10726-004-9B2F236E/Jack-o-lantern.jpg"/>'
+                '<img width="250" src="https://cdn.britannica.com/26/10726-004-9B2F236E/Jack-o-lantern.jpg"/>';
             } else if (value.includes('.')) {
                 result.textContent = 'Detected: . kaboom';
-                // Additional code can be added here
             } else if (value.includes('6')) {
-                result.textContent = 'Detected: heresy';
-                // Additional code can be added here
+                result.textContent = 'Detected: The number is six';
             } else if (value.includes('7')) {
-                result.textContent = 'Detected: heresy';
-                // Additional code can be added here
+                result.textContent = 'Detected: The number is seven';
             } else if (value.includes('8')) {
-                result.textContent = 'Detected: heresy';
-                // Additional code can be added here
+                result.textContent = 'Detected: The number is eight';
+            } else if (value.includes('hello')) {
+                result.textContent = 'Detected: Hello there!';
+            } else if (value.includes('goodbye')) {
+                result.textContent = 'Detected: Goodbye, see you later!';
+            } else if (value.includes('help')) {
+                result.textContent = 'Detected: How can I assist you?';
+            } else if (value.includes('joke')) {
+                result.textContent = 'Detected: Why did the scarecrow win an award? Because he was outstanding in his field!';
             } else if (value === '') {
                 result.textContent = ''; // Clear result if input is empty
                 document.body.style.background = 'rgb(136, 126, 223)'; // Reset background
