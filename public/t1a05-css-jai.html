@@ -14,6 +14,7 @@
             border: 10px solid red; 
             padding: 5px; 
             box-shadow: 0 0 10px green; 
+            font-family: Arial, sans-serif; 
         }
 
         h1 {
@@ -70,6 +71,21 @@
             height: auto; 
             border-radius: 10px; 
         }
+
+        .italic-text {
+            font-style: italic;
+            margin: 10px 0;
+        }
+
+        .bold-text {
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .different-font {
+            font-family: 'Courier New', Courier, monospace; 
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -81,10 +97,20 @@
 
     <audio controls autoplay loop>
         <source src="public/Bury the light.m4a" type="audio/mp4"> 
-        </audio>
+        Your browser does not support the audio element.
+    </audio>
 
     <div class="word-box">
        <b>Color Changing Border</b>
     </div>
+
+    <h2>Italic Text</h2>
+    <div class="italic-text">This text is italicized.</div>
+
+    <h2>Bold Text</h2>
+    <div class="bold-text">This text is bold.</div>
+
+    <h2>Different Font</h2>
+    <div class="different-font">This text uses a different font (Courier New).</div>
 </body>
 </html>
