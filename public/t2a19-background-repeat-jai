@@ -1,1 +1,59 @@
+<body id="myBody" style="background-repeat:repeat; background-size: 80%"
+background="myBackground.jpg">
+<script>
+let myGlobalX =
+let myClock01
+let myclock02
+let mySpeed01 = 400
+</script>
 
+
+<h1 align=center>t2a19-move-background-fred.html</h1>
+
+
+<input id="myButton01" type-button value="background move left" onclick="f
+туТетр = "100px Opx
+myGlobalX -= 5
+туТетр =
+myGlobalX
+X
+pX 0px'
+document.getElementById("myBody").style.backgroundPosition =myTemp
+"">
+
+
+<input type=button value="Auto Background Left Faster" onclick="(
+clearInterval(myClock01)
+mySpeed01 -= 30
+if (mySpeed01 < 10) (mySpeed01 = 10)
+myClock01 = setInterval(function((
+document.getElementById("myButton01').click()
+), mySpeed01)
+J">
+
+
+<input type-button value-"Auto Background Left slower" onclick="(
+clearInterval(myClock01)
+mySpeed01 += 30
+if (mySpeed01 > 1000)(mySpeed01 = 1000)
+myClock01 = setInterval(function()(
+document.getElementById("myButton01").click()
+K mySpeed01)
+,")
+
+
+<input type-button id-"myButton02" value="Image Right" onclick-"(
+document.getElementById('myImage01").style.left =
+parseInt(document.getElementById(`myImage01").style.left) + 10+ 'px
+]"><br><br>
+
+
+<input type=button value="Auto Move Left" onclick="f
+clearInterval(myClock02)
+myclock02 = setInterval(function()(
+document.getElementById('myButton02").click()
+30)
+
+
+<img id="myImage01" style="position:relative; width:100px; height:80px; top:opx;
+left:0px;" src="myImage01.jpg">
