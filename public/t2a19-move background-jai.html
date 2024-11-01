@@ -1,0 +1,61 @@
+<head>
+    <title>Move Background Example</title>
+    <style>
+        body {
+            background-repeat: repeat;
+            background-size: 80%;
+            background-image: url('myBackground.jpg');
+        }
+    </style>
+</head>
+<body id="myBody">
+
+<h1 align="center">t2a19-move-background.html</h1>
+
+<input id="myButton01" type="button" value="Background Move Left" onclick="moveBackgroundLeft()">
+<input type="button" value="Auto Background Left Faster" onclick="autoMoveBackgroundFaster()">
+<input type="button" value="Auto Background Left Slower" onclick="autoMoveBackgroundSlower()">
+<input type="button" id="myButton02" value="Image Right" onclick="moveImageRight()"><br><br>
+<input type="button" value="Auto Move Left" onclick="autoMoveImageLeft()">
+
+<img id="myImage01" style="position:relative; width:100px; height:80px; top:0px; left:0px;" src="myImage01.jpg">
+
+<script>
+let myGlobalX = 0;
+let myClock01;
+let myClock02;
+let mySpeed01 = 400;
+
+function moveBackgroundLeft() {
+    myGlobalX -= 5;
+    let myTemp = myGlobalX + 'px 0px';
+    document.getElementById('myBody').style.backgroundPosition = myTemp;
+}
+
+function autoMoveBackgroundFaster() {
+    clearInterval(myClock01);
+    mySpeed01 -= 30;
+    if (mySpeed01 < 10) mySpeed01 = 10;
+    myClock01 = setInterval(moveBackgroundLeft, mySpeed01);
+}
+
+function autoMoveBackgroundSlower() {
+    clearInterval(myClock01);
+    mySpeed01 += 30;
+    if (mySpeed01 > 1000) mySpeed01 = 1000;
+    myClock01 = setInterval(moveBackgroundLeft, mySpeed01);
+}
+
+function moveImageRight() {
+    let myImage = document.getElementById('myImage01');
+    myImage.style.left = (parseInt(myImage.style.left) + 10) + 'px';
+}
+
+function autoMoveImageLeft() {
+    clearInterval(myClock02);
+    myClock02 = setInterval(moveImageRight, 30);
+}
+</script>
+
+</body>
+</html>
