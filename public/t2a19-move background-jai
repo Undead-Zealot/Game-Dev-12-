@@ -1,14 +1,14 @@
 <body id="myBody" style="background-repeat:repeat; background-size: 80%"
 background="myBackground.jpg">
 <script>
-let myGlobalX =
+let myGlobalX = 0
 let myClock01
 let myclock02
 let mySpeed01 = 400
 </script>
 
 
-<h1 align=center>t2a19-move-background-fred.html</h1>
+<h1 align=center>t2a19-move-background.html</h1>
 
 
 <input id="myButton01" type-button value="background move left" onclick="f
