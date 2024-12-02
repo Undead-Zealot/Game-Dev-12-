@@ -2,3 +2,20 @@ Storyboard for Final proj
 Game type: Adventure with lore
 Combat: yes
 64-pixel game. make it somewhat good looking.
+
+Research:
+A lot of blending and secondary movement layered on top. For example an easy way to make your game immediately feel fluid/dynamic is have the character lean towards the direction of their acceleration using a blendspace.
+For indie games you can even get away with just pitching the character towards acceleration with no animation necessary. Then layer on another blendspace depending on the slope of the ground. 
+Maybe you can layer light/medium/heavy breathing blendspace on the upper body depending on how tired your character is. The more transition animations between states the better such as idle > walk, idle > run, etc.
+And finally IK the feet to the ground to make the character feel grounded.
+
+
+AFAIK you have different animation stats that you can transition between. The more transitions for different states like walking, running, sliding etc you have the more states you could switch between for different situations.
+
+With Motion capture you pretty much record the movement of something you want to animate. Those points that you then recorded can be applied to a similar object (so someone walking upright probably won't work for something that usually walks on 4 legs).
+Something that you record could then be used as an animation for a single state.
+
+Which means, with motion capture you can make it look natural because you actually record natural movement and with the transition between animations states you can react to different situations 
+like walking and running and the things in between depending on how precise you want to be.
+
+
