@@ -30,7 +30,7 @@
             width: 150px;
             height: 80px;
             background-color: green;
-            top: 300px;
+            top: 400px;
             left: 700px;
             color: white;
             text-align: center;
@@ -63,19 +63,16 @@
     <div id="myDiv01">...</div>
 
     <!-- Player and enemy images -->
-    <img id="myImg01" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Flag_of_Libya_%281977%E2%80%932011%29.svg/300px-Flag_of_Libya_%281977%E2%80%932011%29.svg.png" style="top:0px; left:50px;">
+    <img id="myImg01" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Flag_of_Libya_%281977%E2%80%932011%29.svg/300px-Flag_of_Libya_%281977%E2%80%932011%29.svg.png" style="top:350px; left:50px;">
     <img id="myImg02" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Solid_red.svg/1024px-Solid_red.svg.png" style="top:200px; left:250px;">
     <img id="myImg03" src="https://static.wikia.nocookie.net/colors/images/b/ba/-FFFF00.png/revision/latest?cb=20231102223954" style="top:300px; left:450px;">
 
     <div id="endingArea">Finish Line</div>
 
     <!-- Platforms -->
-    <div class="platform" style="top: 350px; left: 150px;"></div>
-    <div class="platform" style="top: 250px; left: 400px;"></div>
-    <div class="platform" style="top: 150px; left: 600px;"></div>
-
-    <input type="button" class="button" value="Auto Background Left" onclick="autoBackgroundLeft()">
-    <input type="button" class="button" value="Image Right Fast Button" onclick="moveRightFast()">
+    <div class="platform" style="top: 400px; left: 150px;" id="platform1"></div>
+    <div class="platform" style="top: 300px; left: 400px;" id="platform2"></div>
+    <div class="platform" style="top: 200px; left: 600px;" id="platform3"></div>
 
     <script>
         let myGlobalX = 0;
@@ -114,10 +111,6 @@
             } else if (myKey === 's' && playerTop + PLAYER_HEIGHT < GAME_HEIGHT) { 
                 player.style.top = playerTop + 5 + 'px';
             }
-
-            applyGravity();
-            myCheckHit();
-            checkEndAreaCollision();
         }
 
         // Apply gravity and check platform collisions
@@ -172,17 +165,28 @@
         function myCheckHit() {
             if (myHitOther('myImg01', 'myImg02') || myHitOther('myImg01', 'myImg03')) {
                 alert('You lose');
-                player.style.left = '50px';
-                player.style.top = '400px';
-                location.reload(); 
+                resetPlayer(); // Reset player on losing
             }
         }
 
         function checkEndAreaCollision() {
             if (myHitOther('myImg01', 'endingArea')) {
                 alert('You win! Moving to next level...');
-                location.href = 'https://undead-zealot.github.io/Game-Dev-12-/public/t2a25.02%20-%20level%20two%20-%20Jai.html'; // Redirect to the next level (change this to your next level URL)
+                location.href = 'https://undead-zealot.github.io/Game-Dev-12-/public/t2a25.02%20-%20level%20two%20-%20Jai.html'; // Redirect to the next level
             }
+        }
+
+        function checkPlayerFall() {
+            let playerTop = parseInt(player.style.top);
+            if (playerTop > GAME_HEIGHT) {
+                alert("You fell out of the area. Restarting...");
+                resetPlayer();
+            }
+        }
+
+        function resetPlayer() {
+            player.style.left = '50px';
+            player.style.top = '350px'; // Place player on the first platform
         }
 
         // Enemy movements
@@ -214,26 +218,17 @@
             }
         }
 
-        // Game loop to move enemies
-        setInterval(moveEnemies, 30);
-
-        // Function for "Auto Background Left"
-        function autoBackgroundLeft() {
-            clearInterval(myClock);
-            let myTemp = '100px 0px';
-            myClock = setInterval(function () {
-                myGlobalX -= 5;
-                myTemp = myGlobalX + 'px 0px';
-                document.getElementById('myBody').style.backgroundPosition = myTemp;
-            }, 100);
+        // Game loop to move enemies and apply gravity
+        function gameLoop() {
+            applyGravity();
+            moveEnemies();
+            myCheckHit();
+            checkEndAreaCollision();
+            checkPlayerFall();
+            requestAnimationFrame(gameLoop);  // Call the next frame
         }
 
-        // Function for "Image Right Fast Button"
-        function moveRightFast() {
-            let playerLeft = parseInt(player.style.left);
-            player.style.left = playerLeft + 10 + 'px';
-            myCheckHit(); // Check for collisions
-        }
+        // Start the game loop
+        requestAnimationFrame(gameLoop);
     </script>
 </body>
-</html>
