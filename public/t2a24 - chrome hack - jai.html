@@ -1,4 +1,8 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Browser Hack by Jai - Moving Objects</title>
     <style>
         #move1 {
@@ -40,9 +44,9 @@
     <input type="button" value="5 window.location" onclick="myObjectData(window.location)">
     <input type="button" value="6 window.parent" onclick="myObjectData(window.parent)">
     <input type="button" value="7 window.chrome" onclick="myObjectData(window.chrome)">
-    <input type="button" value="8 document.all.move1.style" onclick="myObjectData(document.all.move1.style)">
+    <input type="button" value="8 document.getElementById('move1').style" onclick="myObjectData(document.getElementById('move1').style)">
     <input type="button" value="9 style" onclick="myObjectData(style)">
-    <input type="button" value="10 document.all.move1" onclick="myObjectData(document.all.move1)">
+    <input type="button" value="10 document.getElementById('move1')" onclick="myObjectData(document.getElementById('move1'))">
     <input type="button" value="11 window.localStorage" onclick="myObjectData(window.localStorage)">
     <input type="button" value="12 document.getElementById('move1').style" onclick="myObjectData(document.getElementById('move1').style)">
     <input type="button" value="13 document.myForm2.myText1" onclick="myObjectData(document.myForm2.myText1)">
@@ -59,7 +63,6 @@
 <input type="button" value="Back" style="font-size:25px" onclick="window.history.back()"><br><br>
 
 <script>
-
 function myObjectData(myObject) {
     if (!myObject) {
         alert('No object provided!');
@@ -69,46 +72,41 @@ function myObjectData(myObject) {
     let output = '';
     let count = 0;
 
-   
     for (let prop in myObject) {
         if (myObject.hasOwnProperty(prop)) {
             count++;
-            output += `${myObject.constructor.name || 'Object'}.${prop} = ${myObject[prop]}\n`;
+            try {
+                output += `${myObject.constructor.name || 'Object'}.${prop} = ${myObject[prop]}\n`;
+            } catch (error) {
+                output += `${myObject.constructor.name || 'Object'}.${prop} = [error accessing property]\n`;
+            }
             if (count % 3 === 1) {
                 output += '.';
             }
         }
     }
 
-    
     document.myForm.myTextarea.value = output;
-
-    
     document.myForm.myText1.value = myObject.constructor.name || 'Object';
 }
 
-
 function openNewTab() {
-    window.open('https://www.example.com', '_blank'); 
-	
-
+    window.open('https://www.example.com', '_blank');
+}
 
 function changeBackgroundColor() {
     const colors = ['#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#F7D700', '#00FFCC', '#FF5733'];
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    document.body.style.backgroundColor = randomColor; 
+    document.body.style.backgroundColor = randomColor;
 }
-
 
 function changeTitle() {
-    document.title = "New Page Title: " + new Date().toLocaleTimeString();  
+    document.title = "New Page Title: " + new Date().toLocaleTimeString();
 }
-
 
 function showCurrentURL() {
-    alert("The current URL is: " + window.location.href);  
+    alert("The current URL is: " + window.location.href);
 }
-
 
 function showConfirmationDialog() {
     const userConfirmed = confirm("Do you want to proceed?");
@@ -118,7 +116,6 @@ function showConfirmationDialog() {
         alert("You canceled the action.");
     }
 }
-
 
 function openPopupMessage() {
     window.open("", "_blank", "width=300,height=200");
