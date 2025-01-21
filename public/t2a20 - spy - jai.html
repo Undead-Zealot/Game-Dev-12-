@@ -1,26 +1,131 @@
-<h1 align=center>spy</h1>
-<textarea id="myArea01" rows=4 cols=70>Hello how are you</textarea><br> 
+<head>
+    <title>Spy </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
 
+        textarea {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            width: 90%;
+        }
 
-<input type=button value="encrypt" onclick="{
-   let myTemp = ''
-   myString = document.getElementById('myArea01').value.toLowerCase().split('')
-   for (let myLoop=0;   myLoop < myString.length; myLoop++){
-      myTemp = myString[myLoop]
-      if (myString[myLoop] == 'e') {myTemp  = 'f'} 
-      if (myString[myLoop] == 'h') {myTemp  = 'i'} 
-      myString[myLoop] = myTemp
-   }
-   document.getElementById('myArea02').value = myString.join('')
-}"><br><br>
+        input[type="button"] {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
 
+        input[type="button"]:hover {
+            background-color: #005f6b;
+        }
+    </style>
+</head>
+<body>
 
+<h1 align="center">Spy Program</h1>
 
-<textarea id="myArea02" rows=4 cols=70></textarea><br> 
+<!-- Input Area for Original Message -->
+<textarea id="myArea01" rows="4" cols="70">Hello how are you</textarea><br><br>
 
-<input type=button value="decrypt" onclick="{
-   alert('Sorry, you have to do this!')
-}"><br><br>
+<!-- Button for Encryption -->
+<input type="button" value="Encrypt" onclick="encryptMessage()"><br><br>
 
+<!-- Text Area for Encrypted Message -->
+<textarea id="myArea02" rows="4" cols="70"></textarea><br><br>
 
-<textarea id="myArea03" rows=4 cols=70></textarea><br> 
+<!-- Button for Decryption -->
+<input type="button" value="Decrypt" onclick="decryptMessage()"><br><br>
+
+<!-- Text Area for Decrypted Message -->
+<textarea id="myArea03" rows="4" cols="70"></textarea><br><br>
+
+<!-- Controls to Change Text Area Sizes and Colors -->
+<h3>Customize Design</h3>
+Rows (Text Area 1): <input type="number" id="area1Rows" value="4" onchange="updateDesign()"><br>
+Columns (Text Area 1): <input type="number" id="area1Cols" value="70" onchange="updateDesign()"><br><br>
+
+Rows (Text Area 2): <input type="number" id="area2Rows" value="4" onchange="updateDesign()"><br>
+Columns (Text Area 2): <input type="number" id="area2Cols" value="70" onchange="updateDesign()"><br><br>
+
+Rows (Text Area 3): <input type="number" id="area3Rows" value="4" onchange="updateDesign()"><br>
+Columns (Text Area 3): <input type="number" id="area3Cols" value="70" onchange="updateDesign()"><br><br>
+
+Background Color: <input type="color" id="bgColor" value="#ffffff" onchange="updateDesign()"><br><br>
+
+<!-- Scripts -->
+<script>
+    // Encrypt the message
+    function encryptMessage() {
+        let myTemp = '';
+        let myString = document.getElementById('myArea01').value.toLowerCase().split('');
+        
+        for (let myLoop = 0; myLoop < myString.length; myLoop++) {
+            myTemp = myString[myLoop];
+            if (myString[myLoop] === 'e') {
+                myTemp = 'f';
+            }
+            if (myString[myLoop] === 'h') {
+                myTemp = 'i';
+            }
+            myString[myLoop] = myTemp;
+        }
+        
+        document.getElementById('myArea02').value = myString.join('');
+    }
+
+    // Decrypt the message
+    function decryptMessage() {
+        let encryptedMessage = document.getElementById('myArea02').value.toLowerCase().split('');
+        let myTemp = '';
+        
+        for (let myLoop = 0; myLoop < encryptedMessage.length; myLoop++) {
+            myTemp = encryptedMessage[myLoop];
+            if (encryptedMessage[myLoop] === 'f') {
+                myTemp = 'e';
+            }
+            if (encryptedMessage[myLoop] === 'i') {
+                myTemp = 'h';
+            }
+            encryptedMessage[myLoop] = myTemp;
+        }
+
+        document.getElementById('myArea03').value = encryptedMessage.join('');
+    }
+
+    // Update text area sizes and background color
+    function updateDesign() {
+        let area1Rows = document.getElementById('area1Rows').value;
+        let area1Cols = document.getElementById('area1Cols').value;
+        let area2Rows = document.getElementById('area2Rows').value;
+        let area2Cols = document.getElementById('area2Cols').value;
+        let area3Rows = document.getElementById('area3Rows').value;
+        let area3Cols = document.getElementById('area3Cols').value;
+        let bgColor = document.getElementById('bgColor').value;
+
+        document.getElementById('myArea01').rows = area1Rows;
+        document.getElementById('myArea01').cols = area1Cols;
+        
+        document.getElementById('myArea02').rows = area2Rows;
+        document.getElementById('myArea02').cols = area2Cols;
+        
+        document.getElementById('myArea03').rows = area3Rows;
+        document.getElementById('myArea03').cols = area3Cols;
+
+        // Update background color for all text areas
+        document.getElementById('myArea01').style.backgroundColor = bgColor;
+        document.getElementById('myArea02').style.backgroundColor = bgColor;
+        document.getElementById('myArea03').style.backgroundColor = bgColor;
+    }
+</script>
+
+</body>
+</html>
