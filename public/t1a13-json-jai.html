@@ -1,1 +1,58 @@
+<!DOCTYPE html>
+<head>
+    <title>Json Quote Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f4f4f4;
+        }
+        #quote {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        #new-quote {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #new-quote:hover {
+            background-color: #005f6b;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="quote"></div>
+    <button id="new-quote" onclick="generateQuote()">Get New Quote</button>
+
+    <script>
+        // JSON object containing an array of quotes
+        const quotes = [
+            { "text": "The only way to do great work is to love what you do.", "author": "Steve Jobs" },
+            { "text": "Life is what happens when you're busy making other plans.", "author": "John Lennon" },
+            { "text": "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.", "author": "Ralph Waldo Emerson" },
+            { "text": "In three words I can sum up everything I've learned about life: it goes on.", "author": "Robert Frost" },
+            { "text": "Success is not the key to happiness. Happiness is the key to success.", "author": "Albert Schweitzer" }
+        ];
+
+        // Function to generate a random quote
+        function generateQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const randomQuote = quotes[randomIndex];
+            document.getElementById('quote').innerHTML = `"${randomQuote.text}" - ${randomQuote.author}`;
+        }
+
+        // Generate an initial quote when the page loads
+        window.onload = generateQuote;
+    </script>
+
+</body>
+</html>
 
