@@ -1,69 +1,65 @@
+<head>
+    <title>Canvas</title>
+</head>
+<body>
 
-<h1 align=center>t2a21 canvas</h2>
-You use loops and variables to make fast fancy drawings <br><br>
+<h1 align="center">T2A21 Canvas - Fractals</h1>
+You use loops and variables to make fast fancy drawings<br><br>
 
-<input type=button value=".lineTo(30,200)" onclick="{
-   myContext.beginPath();
-   myContext.lineWidth = 1;   
-   myContext.moveTo(20,10);
-   myContext.lineTo(30,200);
-   myContext.stroke();
-}">
+<!-- Buttons for drawing fractals -->
+<input type="button" value="Draw Sierpinski Triangle" onclick="drawSierpinski(400, 50, 350, 5)"><br><br>
 
-<input type=button value=".arc(95, 50, 40, 0, 2 * Math.PI)" onclick="{
-   myContext.beginPath();
-   myContext.lineWidth = 10;
-   myContext.strokeStyle = 'green';
-   myContext.arc(95, 50, 40, 0, 2 * Math.PI);
-   myContext.stroke();
-}">
-
-<input type=button value=".fillText('Hello World', 400, 100)" onclick="{
-   myContext.font = '20px Arial';
-   myContext.fillText('Hello World', 400, 100);
-   myContext.translate(400, 100);  
-   myContext.rotate(60 * Math.PI / 180); 
-   myContext.fillText('Hello World', 10, 10);
-   myContext.stroke();
-   myContext.resetTransform();  
-   //myContext.rotate(-60 * Math.PI / 180); 
-}">
-
-<input type=button value=".quadraticCurveTo(100,220,240,110)" onclick="{
-   myContext.beginPath();
-   myContext.moveTo(300,100);
-   myContext.quadraticCurveTo(100,220,240,110);
-   myContext.stroke();
-
-}">
-
-
-
-<input type=button value=".createLinearGradient(100, 300, 200, 400)" onclick="{
-   let myGradient = myContext.createLinearGradient(100, 300, 200, 400);
-   myGradient.addColorStop(0, 'red');
-   myGradient.addColorStop(0.5, 'blue');
-   myGradient.addColorStop(1, 'yellow');
-
-   myContext.fillStyle = myGradient;
-   myContext.fillRect(100, 300, 200, 400);
-
-   // reset fillstyle
-   myContext.fillStyle = 'black';
-}"><br><br>
-
-<input type=button value="clearRect(20, 20, 50, 50)" onclick="{
-   myContext.clearRect(20, 20, 50, 50);
-}">
-
-<input type=button value="Clear all" onclick="{
-   myContext.clearRect(0, 0, myCanvas.width, myCanvas.height);
-}"><br><br>
+<!-- Clear the canvas -->
+<input type="button" value="Clear all" onclick="clearCanvas()"><br><br>
 
 <canvas id="myCoolTag" width="1000" height="600" style="border:1px solid #000000;"></canvas>
 
 <script>
-   // set up global variables
-   let myCanvas=document.getElementById('myCoolTag');
-   let myContext=myCanvas.getContext('2d');
+    // Set up global variables
+    let myCanvas = document.getElementById('myCoolTag');
+    let myContext = myCanvas.getContext('2d');
+
+    // Function to clear the canvas
+    function clearCanvas() {
+        myContext.clearRect(0, 0, myCanvas.width, myCanvas.height);
+    }
+
+    // Function to draw a triangle
+    function drawTriangle(x1, y1, x2, y2, x3, y3) {
+        myContext.beginPath();
+        myContext.moveTo(x1, y1);
+        myContext.lineTo(x2, y2);
+        myContext.lineTo(x3, y3);
+        myContext.closePath();
+        myContext.strokeStyle = 'black';
+        myContext.stroke();
+        myContext.fillStyle = 'rgba(0, 255, 0, 0.5)';  // Green with some transparency
+        myContext.fill();
+    }
+
+    // Recursive function to draw Sierpinski Triangle
+    function drawSierpinski(x1, y1, x2, y2, x3, y3, depth) {
+        if (depth === 0) {
+            // Draw the triangle when depth is 0 (base case)
+            drawTriangle(x1, y1, x2, y2, x3, y3);
+        } else {
+            // Calculate midpoints of the triangle's edges
+            let mx1 = (x1 + x2) / 2;
+            let my1 = (y1 + y2) / 2;
+
+            let mx2 = (x2 + x3) / 2;
+            let my2 = (y2 + y3) / 2;
+
+            let mx3 = (x3 + x1) / 2;
+            let my3 = (y3 + y1) / 2;
+
+            // Recurse on the 3 smaller triangles
+            drawSierpinski(x1, y1, mx1, my1, mx3, my3, depth - 1);
+            drawSierpinski(mx1, my1, x2, y2, mx2, my2, depth - 1);
+            drawSierpinski(mx3, my3, mx2, my2, x3, y3, depth - 1);
+        }
+    }
 </script>
+
+</body>
+</html>
