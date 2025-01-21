@@ -12,8 +12,9 @@
             background-image: url('https://www.travelandleisure.com/thmb/KTIha5CLifSoUD3gx0YP51xc3rY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/blue0517-4dfc85cb0200460ab717b101ac07888f.jpg');
         }
 
-        #myImg01, #myImg02, #myImg03, #endingArea, .platform {
+        #myImg01, #myImg02, #myImg03, #endingArea, .platform, .floor {
             position: absolute;
+            border: 2px solid red; /* Add borders for debugging hitboxes */
         }
 
         #myImg01 {
@@ -44,6 +45,13 @@
             width: 150px;
         }
 
+        .floor {
+            background-color: #8B4513;
+            height: 20px;
+            width: 100%;
+            top: 450px; /* The floor */
+        }
+
         #myDiv01 {
             color: yellow;
             position: absolute;
@@ -58,7 +66,7 @@
 </head>
 
 <body id="myBody" onkeydown="handleKeyDown(event)">
-    <h1 align="center">t4a01-game-template-with-wasd-by-fred</h1>
+    <h1 align="center">Platformer Game Level 1</h1>
 
     <div id="myDiv01">...</div>
 
@@ -73,6 +81,10 @@
     <div class="platform" style="top: 400px; left: 150px;" id="platform1"></div>
     <div class="platform" style="top: 300px; left: 400px;" id="platform2"></div>
     <div class="platform" style="top: 200px; left: 600px;" id="platform3"></div>
+    <div class="platform" style="top: 350px; left: 800px;" id="platform4"></div>
+
+    <!-- Floor (the ground level) -->
+    <div class="floor"></div>
 
     <script>
         let myGlobalX = 0;
@@ -86,6 +98,7 @@
         let enemy2 = document.getElementById('myImg03');
         let enemy1Direction = 1;
         let enemy2Direction = 1;
+        let gameOver = false; // Flag to check if game is over
 
         // Game area boundaries
         const GAME_WIDTH = 1000;
@@ -97,6 +110,8 @@
 
         // Handle keyboard input for player movement
         function handleKeyDown(event) {
+            if (gameOver) return; // Don't process movement if game is over
+
             let myKey = event.key.toLowerCase();
             let playerLeft = parseInt(player.style.left);
             let playerTop = parseInt(player.style.top);
@@ -165,6 +180,7 @@
         function myCheckHit() {
             if (myHitOther('myImg01', 'myImg02') || myHitOther('myImg01', 'myImg03')) {
                 alert('You lose');
+                gameOver = true; // Set game over flag
                 resetPlayer(); // Reset player on losing
             }
         }
@@ -220,6 +236,8 @@
 
         // Game loop to move enemies and apply gravity
         function gameLoop() {
+            if (gameOver) return; // Stop the game loop if game over
+
             applyGravity();
             moveEnemies();
             myCheckHit();
