@@ -1,4 +1,8 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Move Image with WASD</title>
     <style>
         body {
@@ -42,16 +46,15 @@
 
 <h1>Move Image</h1>
 
-<div id="myImage01"></div>
-
+<img id="myImage01" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Square_-_black_simple.svg/640px-Square_-_black_simple.svg.png" alt="Moving Image">
 
 <input type="button" id="myButton02" value="Move Right" onclick="moveRight()">
 
 <script>
-    
-    let myImage = document.getElementById('https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Square_-_black_simple.svg/640px-Square_-_black_simple.svg.png');
+    // Get the image element by its ID
+    let myImage = document.getElementById('myImage01');
 
-    
+    // Initialize position
     let posX = window.innerWidth / 2 - 50; 
     let posY = window.innerHeight / 2 - 50;
 
@@ -61,37 +64,14 @@
         myImage.style.top = posY + 'px';
     }
 
-    
+    // Function to move the image to the right when the button is clicked
     function moveRight() {
-        posX += 10; 
+        posX += 10;
         updatePosition();
     }
 
-    
+    // Move the image using WASD keys
     window.addEventListener('keydown', function(event) {
         const moveSpeed = 10; // Set how many pixels the image should move per key press
 
         switch(event.key) {
-            case 'w': 
-                posY -= moveSpeed;
-                break;
-            case 'a': 
-                posX -= moveSpeed;
-                break;
-            case 's': 
-                posY += moveSpeed;
-                break;
-            case 'd': 
-                posX += moveSpeed;
-                break;
-        }
-
-        updatePosition(); 
-    });
-
-   
-    updatePosition();
-</script>
-
-</body>
-</html>
