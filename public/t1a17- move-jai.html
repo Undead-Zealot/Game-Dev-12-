@@ -1,8 +1,97 @@
-<h1 align=center> Move</h1>
+<head>
+    <title>Move Image with WASD</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 50px;
+            background-color: #f4f4f4;
+        }
+
+        #myImage01 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            background-color: red; /* Just for visibility */
+            transition: all 0.1s ease;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        input[type="button"] {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        input[type="button"]:hover {
+            background-color: #005f6b;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Move Image</h1>
+
+<div id="myImage01"></div>
+
+
+<input type="button" id="myButton02" value="Move Right" onclick="moveRight()">
+
 <script>
-  let myClock02
+    
+    let myImage = document.getElementById('https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Square_-_black_simple.svg/640px-Square_-_black_simple.svg.png');
+
+    
+    let posX = window.innerWidth / 2 - 50; 
+    let posY = window.innerHeight / 2 - 50;
+
+    // Update the position of the image
+    function updatePosition() {
+        myImage.style.left = posX + 'px';
+        myImage.style.top = posY + 'px';
+    }
+
+    
+    function moveRight() {
+        posX += 10; 
+        updatePosition();
+    }
+
+    
+    window.addEventListener('keydown', function(event) {
+        const moveSpeed = 10; // Set how many pixels the image should move per key press
+
+        switch(event.key) {
+            case 'w': 
+                posY -= moveSpeed;
+                break;
+            case 'a': 
+                posX -= moveSpeed;
+                break;
+            case 's': 
+                posY += moveSpeed;
+                break;
+            case 'd': 
+                posX += moveSpeed;
+                break;
+        }
+
+        updatePosition(); 
+    });
+
+   
+    updatePosition();
 </script>
 
-<input type=button id="myButton02" value="Image Right" onclick"{
-document.getElementById('myImage01).style.left = 0
-Clea
+</body>
+</html>
