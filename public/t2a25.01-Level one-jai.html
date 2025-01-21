@@ -14,7 +14,7 @@
 
         #myImg01, #myImg02, #myImg03, #endingArea, .platform, .floor {
             position: absolute;
-            border: 2px solid red; /* Add borders for debugging hitboxes */
+            border: 2px solid red; /* Debugging hitboxes */
         }
 
         #myImg01 {
@@ -142,10 +142,10 @@
                 for (let i = 0; i < platforms.length; i++) {
                     let platform = platforms[i];
                     if (myHitOther('myImg01', platform.id)) {
-                        if (velocityY > 0) {
+                        if (velocityY > 0) {  // Ensure only landing when falling down
                             isOnPlatform = true;
                             velocityY = 0;
-                            player.style.top = platform.offsetTop - PLAYER_HEIGHT + 'px';
+                            player.style.top = platform.offsetTop - PLAYER_HEIGHT + 'px';  // Land on the platform
                             break;
                         }
                     }
@@ -187,7 +187,9 @@
         }
 
         function checkEndAreaCollision() {
-            if (myHitOther('myImg01', 'endingArea')) {
+            let playerTop = parseInt(player.style.top);
+            // Only check finish line if player is on the floor or platforms
+            if ((playerTop + PLAYER_HEIGHT >= GAME_HEIGHT - 20 || myHitOther('myImg01', 'platform1') || myHitOther('myImg01', 'platform2') || myHitOther('myImg01', 'platform3') || myHitOther('myImg01', 'platform4')) && myHitOther('myImg01', 'endingArea')) {
                 alert('You win! Moving to next level...');
                 location.href = 'https://undead-zealot.github.io/Game-Dev-12-/public/t2a25.02%20-%20level%20two%20-%20Jai.html'; // Redirect to the next level
             }
