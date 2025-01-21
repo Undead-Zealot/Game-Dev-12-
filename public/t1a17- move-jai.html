@@ -75,3 +75,26 @@
         const moveSpeed = 10; // Set how many pixels the image should move per key press
 
         switch(event.key) {
+            case 'w': // Move up
+                posY -= moveSpeed;
+                break;
+            case 'a': // Move left
+                posX -= moveSpeed;
+                break;
+            case 's': // Move down
+                posY += moveSpeed;
+                break;
+            case 'd': // Move right
+                posX += moveSpeed;
+                break;
+        }
+
+        updatePosition(); // Update the position after moving
+    });
+
+    // Initialize the position of the image
+    updatePosition();
+</script>
+
+</body>
+</html>
