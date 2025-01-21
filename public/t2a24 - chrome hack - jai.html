@@ -9,6 +9,7 @@
             position: absolute;
             left: 600px;
             top: 560px;
+            transition: all 0.1s ease; /* Smooth movement */
         }
         textarea {
             width: 70%;
@@ -27,9 +28,9 @@
 
 <h2>Browser Hack by Jai</h2>
 <h3>Instructions</h3>
-<p>Use the first 15 buttons to explore the properties and methods of various objects in the browser. Click refresh to reset the browser.</p>
+<p>Use the buttons to explore the properties and methods of various objects in the browser. Click refresh to reset the browser.</p>
 
-<img id="move1" src="http://www.autos.ca/wp-content/uploads/2013/03/001-ferrari-laferrari.jpg" width="400" height="200" alt="Ferrari LaFerrari">
+<img id="move1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Square_-_black_simple.svg/640px-Square_-_black_simple.svg.png" width="100" height="100" alt="Moving Image">
 
 <h3>Click the buttons to see all usable properties and methods of the object.</h3>
 
@@ -39,24 +40,17 @@
 
     <input type="button" value="1 window" onclick="myObjectData(window)">
     <input type="button" value="2 document" onclick="myObjectData(document)">
-    <input type="button" value="3 document.myForm2" onclick="myObjectData(document.myForm2)">
-    <input type="button" value="4 document.myForm2.myTextarea" onclick="myObjectData(document.myForm2.myTextarea)">
-    <input type="button" value="5 window.location" onclick="myObjectData(window.location)">
-    <input type="button" value="6 window.parent" onclick="myObjectData(window.parent)">
-    <input type="button" value="7 window.chrome" onclick="myObjectData(window.chrome)">
-    <input type="button" value="8 document.getElementById('move1').style" onclick="myObjectData(document.getElementById('move1').style)">
-    <input type="button" value="9 style" onclick="myObjectData(style)">
-    <input type="button" value="10 document.getElementById('move1')" onclick="myObjectData(document.getElementById('move1'))">
-    <input type="button" value="11 window.localStorage" onclick="myObjectData(window.localStorage)">
-    <input type="button" value="12 document.getElementById('move1').style" onclick="myObjectData(document.getElementById('move1').style)">
-    <input type="button" value="13 document.myForm2.myText1" onclick="myObjectData(document.myForm2.myText1)">
-    <input type="button" value="14 document.getElementById('myText2')" onclick="myObjectData(document.getElementById('myText2'))">
-    <input type="button" value="15 Open a new tab" onclick="openNewTab()">
-    <input type="button" value="16 Change background color" onclick="changeBackgroundColor()">
-    <input type="button" value="17 Change page title" onclick="changeTitle()">
-    <input type="button" value="18 Show current URL" onclick="showCurrentURL()">
-    <input type="button" value="19 Show confirmation dialog" onclick="showConfirmationDialog()">
-    <input type="button" value="20 Open popup message" onclick="openPopupMessage()">
+    <input type="button" value="3 document.getElementById('move1')" onclick="myObjectData(document.getElementById('move1'))">
+    <input type="button" value="4 window.location" onclick="myObjectData(window.location)">
+    <input type="button" value="5 window.parent" onclick="myObjectData(window.parent)">
+    <input type="button" value="6 window.chrome" onclick="myObjectData(window.chrome)">
+    <input type="button" value="7 document.getElementById('move1').style" onclick="myObjectData(document.getElementById('move1').style)">
+    <input type="button" value="8 window.localStorage" onclick="myObjectData(window.localStorage)">
+    <input type="button" value="9 Change Background Color" onclick="changeBackgroundColor()">
+    <input type="button" value="10 Show Current URL" onclick="showCurrentURL()">
+    <input type="button" value="11 Change Title" onclick="changeTitle()">
+    <input type="button" value="12 Show Confirmation" onclick="showConfirmationDialog()">
+    <input type="button" value="13 Open New Tab" onclick="openNewTab()">
 </form>
 
 <h3>Click "Back" to go to the previous page:</h3>
@@ -117,11 +111,29 @@ function showConfirmationDialog() {
     }
 }
 
-function openPopupMessage() {
-    window.open("", "_blank", "width=300,height=200");
-    const popup = window.open("", "_blank");
-    popup.document.write("<h1>Popup Message</h1><p>This is a custom message in the popup!</p>");
-}
+// Move the image using arrow keys
+document.addEventListener('keydown', function(event) {
+    const moveSpeed = 10;
+    const image = document.getElementById('move1');
+
+    let left = parseInt(image.style.left || 600);
+    let top = parseInt(image.style.top || 560);
+
+    switch (event.key) {
+        case 'ArrowUp':
+            image.style.top = (top - moveSpeed) + 'px';
+            break;
+        case 'ArrowDown':
+            image.style.top = (top + moveSpeed) + 'px';
+            break;
+        case 'ArrowLeft':
+            image.style.left = (left - moveSpeed) + 'px';
+            break;
+        case 'ArrowRight':
+            image.style.left = (left + moveSpeed) + 'px';
+            break;
+    }
+});
 </script>
 
 </body>
