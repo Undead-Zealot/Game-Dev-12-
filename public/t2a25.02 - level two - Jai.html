@@ -1,1 +1,204 @@
+<head>
+    <title>Platformer Game - Level 2</title>
+    <style>
+        body {
+            background-repeat: repeat;
+            background-size: 80%;
+        }
+        #myBody {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Purple_website.svg/1200px-Purple_website.svg.png'); 
+        }
+        #myImg01, #myImg02, #myImg03, #endingArea {
+            position: absolute;
+        }
+        #myImg01 {
+            width: 100px;
+            height: 80px;
+        }
+        #myImg02, #myImg03 {
+            width: 100px;
+            height: 80px;
+        }
+        #endingArea {
+            width: 150px;
+            height: 80px;
+            background-color: orange;
+            top: 400px;
+            left: 800px;
+            color: white;
+            text-align: center;
+            line-height: 80px;
+            font-size: 20px;
+        }
+        #myDiv01 {
+            color: yellow;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .button {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body id="myBody" onkeydown="handleKeyDown(event)">
+    <h1 align="center">Platformer Game - Level 2</h1>
+    
+    <div id="myDiv01">...</div>
+    
+  
+    <img id="myImg01" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Flag_of_Libya_%281977%E2%80%932011%29.svg/300px-Flag_of_Libya_%281977%E2%80%932011%29.svg.png" style="top:400px; left:50px;"> 
+    <img id="myImg02" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Solid_red.svg/1024px-Solid_red.svg.png" style="top:250px; left:200px;"> 
+    <img id="myImg03" src="https://static.wikia.nocookie.net/colors/images/b/ba/-FFFF00.png/revision/latest?cb=20231102223954" style="top:350px; left:500px;"> 
+    
+    
+    <div id="endingArea">Finish Line</div>
+
+    <input type="button" class="button" value="Auto Background Left" onclick="autoBackgroundLeft()">
+    <input type="button" class="button" value="Image Right Fast Button" onclick="moveRightFast()">
+
+    <script>
+        
+        let myGlobalX = 0;
+        let myClock;
+        let myInterval = 0;
+        let gravity = 1;
+        let isJumping = false;
+        let jumpSpeed = -15;
+        let velocityY = 0;
+        
+       
+        let player = document.getElementById('myImg01');
+        
+        
+        let enemy1 = document.getElementById('myImg02');
+        let enemy2 = document.getElementById('myImg03');
+        let enemy1Direction = 1;
+        let enemy2Direction = 1;
+
+       
+        function handleKeyDown(event) {
+            let myKey = event.key.toLowerCase();
+            let playerLeft = parseInt(player.style.left);
+            let playerTop = parseInt(player.style.top);
+
+            if (myKey === 'd') { 
+                player.style.left = playerLeft + 7 + 'px';
+            } else if (myKey === 'a') { 
+                player.style.left = playerLeft - 7 + 'px';
+            } else if (myKey === 'w' && !isJumping) { 
+                isJumping = true;
+                velocityY = jumpSpeed;
+            } else if (myKey === 's') { 
+                player.style.top = playerTop + 5 + 'px';
+            }
+            
+            applyGravity();
+            myCheckHit();
+            checkEndAreaCollision(); 
+        }
+
+        
+        function applyGravity() {
+            let playerTop = parseInt(player.style.top);
+            if (isJumping) {
+                velocityY += gravity;
+                player.style.top = playerTop + velocityY + 'px';
+                if (playerTop >= 500) { 
+                    isJumping = false;
+                    player.style.top = '500px';
+                    velocityY = 0;
+                }
+            }
+        }
+
+        
+        function myHitOther(my1, my2) {
+            let left1 = parseInt(document.getElementById(my1).style.left);
+            let right1 = left1 + parseInt(document.getElementById(my1).style.width);
+            let top1 = parseInt(document.getElementById(my1).style.top);
+            let bottom1 = top1 + parseInt(document.getElementById(my1).style.height);
+
+            let left2 = parseInt(document.getElementById(my2).style.left);
+            let right2 = left2 + parseInt(document.getElementById(my2).style.width);
+            let top2 = parseInt(document.getElementById(my2).style.top);
+            let bottom2 = top2 + parseInt(document.getElementById(my2).style.height);
+
+            if ((right1 >= left2) && (bottom1 >= top2) && (left1 <= right2) && (top1 <= bottom2)) {
+                return true;
+            }
+            return false;
+        }
+
+        function myCheckHit() {
+            if (myHitOther('myImg01', 'myImg02') || myHitOther('myImg01', 'myImg03')) {
+                alert('You lose');
+                player.style.left = '50px';
+                player.style.top = '500px';
+                location.reload(); 
+            }
+        }
+
+        
+        function checkEndAreaCollision() {
+            if (myHitOther('myImg01', 'endingArea')) {
+                alert('You win! Moving to next level...');
+                location.href = 'nextLevel3.html'; // Redirect to Level 3 (change this to your next level URL)
+            }
+        }
+
+        
+        function moveEnemies() {
+            
+            let enemy1Left = parseInt(enemy1.style.left);
+            if (enemy1Direction === 1) {
+                enemy1.style.left = enemy1Left + 3 + 'px';
+                if (enemy1Left >= 600) {
+                    enemy1Direction = -1;
+                }
+            } else {
+                enemy1.style.left = enemy1Left - 3 + 'px';
+                if (enemy1Left <= 100) {
+                    enemy1Direction = 1;
+                }
+            }
+
+            
+            let enemy2Left = parseInt(enemy2.style.left);
+            if (enemy2Direction === 1) {
+                enemy2.style.left = enemy2Left + 2 + 'px';
+                if (enemy2Left >= 700) {
+                    enemy2Direction = -1;
+                }
+            } else {
+                enemy2.style.left = enemy2Left - 2 + 'px';
+                if (enemy2Left <= 200) {
+                    enemy2Direction = 1;
+                }
+            }
+        }
+
+        
+        setInterval(moveEnemies, 30);
+
+        
+        function autoBackgroundLeft() {
+            clearInterval(myClock);
+            let myTemp = '100px 0px';
+            myClock = setInterval(function () {
+                myGlobalX -= 5;
+                myTemp = myGlobalX + 'px 0px';
+                document.getElementById('myBody').style.backgroundPosition = myTemp;
+            }, 100);
+        }
+
+        
+        function moveRightFast() {
+            let playerLeft = parseInt(player.style.left);
+            player.style.left = playerLeft + 10 + 'px';
+            myCheckHit(); 
+        }
+    </script>
+</body>
+</html>
 
