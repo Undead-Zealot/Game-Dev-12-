@@ -4,21 +4,28 @@
         body {
             background-repeat: repeat;
             background-size: 80%;
+            margin: 0;
+            overflow: hidden;
         }
+
         #myBody {
             background-image: url('https://www.travelandleisure.com/thmb/KTIha5CLifSoUD3gx0YP51xc3rY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/blue0517-4dfc85cb0200460ab717b101ac07888f.jpg');
         }
-        #myImg01, #myImg02, #myImg03, #endingArea {
+
+        #myImg01, #myImg02, #myImg03, #endingArea, .platform {
             position: absolute;
         }
+
         #myImg01 {
             width: 100px;
             height: 80px;
         }
+
         #myImg02, #myImg03 {
             width: 100px;
             height: 80px;
         }
+
         #endingArea {
             width: 150px;
             height: 80px;
@@ -30,89 +37,121 @@
             line-height: 80px;
             font-size: 20px;
         }
+
+        .platform {
+            background-color: #8B4513;
+            height: 20px;
+            width: 150px;
+        }
+
         #myDiv01 {
             color: yellow;
             position: absolute;
             top: 10px;
             left: 10px;
         }
+
         .button {
             margin: 10px;
         }
     </style>
 </head>
+
 <body id="myBody" onkeydown="handleKeyDown(event)">
     <h1 align="center">t4a01-game-template-with-wasd-by-fred</h1>
-    
+
     <div id="myDiv01">...</div>
-    
+
     <!-- Player and enemy images -->
     <img id="myImg01" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Flag_of_Libya_%281977%E2%80%932011%29.svg/300px-Flag_of_Libya_%281977%E2%80%932011%29.svg.png" style="top:0px; left:50px;">
     <img id="myImg02" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Solid_red.svg/1024px-Solid_red.svg.png" style="top:200px; left:250px;">
     <img id="myImg03" src="https://static.wikia.nocookie.net/colors/images/b/ba/-FFFF00.png/revision/latest?cb=20231102223954" style="top:300px; left:450px;">
-    
-   
+
     <div id="endingArea">Finish Line</div>
+
+    <!-- Platforms -->
+    <div class="platform" style="top: 350px; left: 150px;"></div>
+    <div class="platform" style="top: 250px; left: 400px;"></div>
+    <div class="platform" style="top: 150px; left: 600px;"></div>
 
     <input type="button" class="button" value="Auto Background Left" onclick="autoBackgroundLeft()">
     <input type="button" class="button" value="Image Right Fast Button" onclick="moveRightFast()">
 
     <script>
-        
         let myGlobalX = 0;
-        let myClock;
-        let myInterval = 0;
         let gravity = 1;
         let isJumping = false;
         let jumpSpeed = -15;
         let velocityY = 0;
-        
-      
+
         let player = document.getElementById('myImg01');
-        
-        
         let enemy1 = document.getElementById('myImg02');
         let enemy2 = document.getElementById('myImg03');
         let enemy1Direction = 1;
         let enemy2Direction = 1;
 
-       
+        // Game area boundaries
+        const GAME_WIDTH = 1000;
+        const GAME_HEIGHT = 500;
+
+        // Player boundaries
+        const PLAYER_WIDTH = 100;
+        const PLAYER_HEIGHT = 80;
+
+        // Handle keyboard input for player movement
         function handleKeyDown(event) {
             let myKey = event.key.toLowerCase();
             let playerLeft = parseInt(player.style.left);
             let playerTop = parseInt(player.style.top);
 
-            if (myKey === 'd') {
+            if (myKey === 'd' && playerLeft + PLAYER_WIDTH < GAME_WIDTH) {
                 player.style.left = playerLeft + 7 + 'px';
-            } else if (myKey === 'a') { 
+            } else if (myKey === 'a' && playerLeft > 0) { 
                 player.style.left = playerLeft - 7 + 'px';
             } else if (myKey === 'w' && !isJumping) { 
                 isJumping = true;
                 velocityY = jumpSpeed;
-            } else if (myKey === 's') { 
+            } else if (myKey === 's' && playerTop + PLAYER_HEIGHT < GAME_HEIGHT) { 
                 player.style.top = playerTop + 5 + 'px';
             }
-            
+
             applyGravity();
             myCheckHit();
             checkEndAreaCollision();
         }
 
-        
+        // Apply gravity and check platform collisions
         function applyGravity() {
             let playerTop = parseInt(player.style.top);
+            let isOnPlatform = false;
+
             if (isJumping) {
                 velocityY += gravity;
                 player.style.top = playerTop + velocityY + 'px';
-                if (playerTop >= 400) { 
+
+                // Check collision with platforms
+                let platforms = document.getElementsByClassName('platform');
+                for (let i = 0; i < platforms.length; i++) {
+                    let platform = platforms[i];
+                    if (myHitOther('myImg01', platform.id)) {
+                        if (velocityY > 0) {
+                            isOnPlatform = true;
+                            velocityY = 0;
+                            player.style.top = platform.offsetTop - PLAYER_HEIGHT + 'px';
+                            break;
+                        }
+                    }
+                }
+
+                if (!isOnPlatform && playerTop >= GAME_HEIGHT - PLAYER_HEIGHT) { 
                     isJumping = false;
-                    player.style.top = '400px';
+                    player.style.top = GAME_HEIGHT - PLAYER_HEIGHT + 'px';
                     velocityY = 0;
                 }
             }
         }
 
-       
+        // Check if player collides with enemies or ending area
         function myHitOther(my1, my2) {
             let left1 = parseInt(document.getElementById(my1).style.left);
             let right1 = left1 + parseInt(document.getElementById(my1).style.width);
@@ -139,7 +178,6 @@
             }
         }
 
-       
         function checkEndAreaCollision() {
             if (myHitOther('myImg01', 'endingArea')) {
                 alert('You win! Moving to next level...');
@@ -149,7 +187,6 @@
 
         // Enemy movements
         function moveEnemies() {
-            // Enemy 1 movement
             let enemy1Left = parseInt(enemy1.style.left);
             if (enemy1Direction === 1) {
                 enemy1.style.left = enemy1Left + 3 + 'px';
@@ -163,7 +200,6 @@
                 }
             }
 
-            // Enemy 2 movement
             let enemy2Left = parseInt(enemy2.style.left);
             if (enemy2Direction === 1) {
                 enemy2.style.left = enemy2Left + 2 + 'px';
