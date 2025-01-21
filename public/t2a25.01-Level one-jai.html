@@ -1,5 +1,5 @@
 <head>
-    <title>Platformer Game level 1</title>
+    <title>Platformer Game Level 1</title>
     <style>
         body {
             background-repeat: repeat;
@@ -46,7 +46,7 @@
         }
 
         .floor {
-            background-color: #8B4513;
+            background-color: #4CAF50; /* Green floor color */
             height: 20px;
             width: 100%;
             top: 450px; /* The floor */
@@ -88,9 +88,9 @@
 
     <script>
         let myGlobalX = 0;
-        let gravity = 1;
+        let gravity = 0.5;
         let isJumping = false;
-        let jumpSpeed = -15;
+        let jumpSpeed = -10;
         let velocityY = 0;
 
         let player = document.getElementById('myImg01');
@@ -117,9 +117,9 @@
             let playerTop = parseInt(player.style.top);
 
             if (myKey === 'd' && playerLeft + PLAYER_WIDTH < GAME_WIDTH) {
-                player.style.left = playerLeft + 7 + 'px';
+                player.style.left = playerLeft + 10 + 'px'; // Increased speed for smoother movement
             } else if (myKey === 'a' && playerLeft > 0) { 
-                player.style.left = playerLeft - 7 + 'px';
+                player.style.left = playerLeft - 10 + 'px'; // Increased speed for smoother movement
             } else if (myKey === 'w' && !isJumping) { 
                 isJumping = true;
                 velocityY = jumpSpeed;
@@ -151,9 +151,10 @@
                     }
                 }
 
-                if (!isOnPlatform && playerTop >= GAME_HEIGHT - PLAYER_HEIGHT) { 
+                // Check for collision with the floor
+                if (!isOnPlatform && playerTop >= GAME_HEIGHT - PLAYER_HEIGHT - 20) { 
                     isJumping = false;
-                    player.style.top = GAME_HEIGHT - PLAYER_HEIGHT + 'px';
+                    player.style.top = GAME_HEIGHT - PLAYER_HEIGHT - 20 + 'px';
                     velocityY = 0;
                 }
             }
