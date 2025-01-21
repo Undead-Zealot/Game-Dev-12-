@@ -1,73 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Object and arrays</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library System</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            padding: 50px;
-            background-color: #f4f4f4;
+            background-color: #f9f9f9;
+            padding: 20px;
         }
-        #joke {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
+        .book-list {
+            margin-top: 20px;
         }
-        #new-joke {
-            padding: 10px 20px;
-            font-size: 18px;
-            background-color: #008CBA;
-            color: white;
-            border: none;
-            cursor: pointer;
+        .book-item {
+            background-color: #eef;
+            margin: 10px;
+            padding: 10px;
             border-radius: 5px;
-        }
-        #new-joke:hover {
-            background-color: #005f6b;
+            text-align: left;
         }
     </style>
 </head>
 <body>
 
-    <div id="joke"></div>
-    <button id="new-joke" onclick="generateJoke()">Get New Chuck Norris Joke</button>
+    <h1>Library System</h1>
+    <p>Welcome to the library! Here are the books available:</p>
+
+    <div class="book-list" id="bookList"></div>
+
+    <h2>Add a new book</h2>
+    <input type="text" id="title" placeholder="Book Title" /><br>
+    <input type="text" id="author" placeholder="Author Name" /><br>
+    <input type="number" id="year" placeholder="Year Published" /><br>
+    <button onclick="addBook()">Add Book</button>
 
     <script>
-        
-        let jokeObject = {};
+        // Array to store books
+        let library = [];
 
-        
-        let jokeArray = [];
+        // Book object constructor
+        function Book(title, author, year) {
+            this.title = title;
+            this.author = author;
+            this.year = year;
+        }
 
-        
-        async function generateJoke() {
-            try {
-                
-                const response = await fetch('https://api.chucknorris.io/jokes/random');
-                const data = await response.json();
+        // Function to display books on the page
+        function displayBooks() {
+            const bookList = document.getElementById('bookList');
+            bookList.innerHTML = ''; // Clear previous list
 
-                
-                jokeObject = {
-                    id: data.id,
-                    joke: data.value,
-                    category: data.categories.length > 0 ? data.categories[0] : 'Uncategorized'
-                };
+            library.forEach(book => {
+                const bookDiv = document.createElement('div');
+                bookDiv.classList.add('book-item');
+                bookDiv.innerHTML = `<strong>${book.title}</strong><br>
+                                     Author: ${book.author}<br>
+                                     Year: ${book.year}`;
+                bookList.appendChild(bookDiv);
+            });
+        }
 
-                // Add the joke to the array
-                jokeArray.push(jokeObject);
+        // Function to add a new book
+        function addBook() {
+            const title = document.getElementById('title').value;
+            const author = document.getElementById('author').value;
+            const year = document.getElementById('year').value;
 
-                // show the joke on the page
-                document.getElementById('joke').innerHTML = `"${jokeObject.joke}"`;
+            // Create a new book object and push it into the library array
+            if (title && author && year) {
+                const newBook = new Book(title, author, year);
+                library.push(newBook);
 
-                console.log("Joke Object: ", jokeObject); 
-                console.log("Joke Array: ", jokeArray); 
-            } catch (error) {
-                console.error('Error fetching joke:', error);
+                // Clear input fields
+                document.getElementById('title').value = '';
+                document.getElementById('author').value = '';
+                document.getElementById('year').value = '';
+
+                // Display the updated book list
+                displayBooks();
+            } else {
+                alert('Please fill in all fields!');
             }
         }
 
-        
-        window.onload = generateJoke;
+        // Initial display of books
+        displayBooks();
     </script>
-
+    
 </body>
 </html>
