@@ -1,28 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage Example</title>
+</head>
+<body>
 
-<h2> local-storage </h2>
+<h2>Local Storage</h2>
 
-<body onload="{
-   myStorage = localStorage.getItem('myStoredText')
-   if(myStorage  != null){
-      document.getElementById('myText1').value = myStorage 
+<!-- Input field where the user can enter text -->
+Text example: <input id="myText1" type="text" size="70" value="" placeholder="Write here to store"><br><br>
+
+<!-- Buttons to store and retrieve the text -->
+<input type="button" value="Store Text" onclick="storeText()">
+<input type="button" value="Retrieve Text" onclick="retrieveText()">
+
+<script>
+    // On page load, check if there is saved text in localStorage and set it in the input
+    window.onload = function() {
+        let myStoredText = localStorage.getItem('myStoredText');
+        if (myStoredText !== null) {
+            document.getElementById('myText1').value = myStoredText;
+        }
+    };
+
+    // Store the text from the input field to localStorage
+    function storeText() {
+        let textToStore = document.getElementById('myText1').value;
+        if (textToStore) {
+            localStorage.setItem('myStoredText', textToStore);
+            alert(textToStore + ' has been stored');
+            document.getElementById('myText1').value = '';  // Clear the input after storing
+        } else {
+            alert('Please enter some text to store.');
+        }
     }
-}">
 
-<body onunload="{
-   localstorage.setItem('myStoredText',document.getElementById('myText1').value)
-}">   
+    // Retrieve the text from localStorage and set it back into the input field
+    function retrieveText() {
+        let storedText = localStorage.getItem('myStoredText');
+        if (storedText !== null) {
+            document.getElementById('myText1').value = storedText;
+        } else {
+            alert('No text found in storage.');
+        }
+    }
 
-Text example: <input id="myText1" type=text size=70 value="" placeholder="Write here to store"><br>
+    // Save the text to localStorage when the page is unloaded (e.g., browser close or navigate away)
+    window.onunload = function() {
+        let textToStore = document.getElementById('myText1').value;
+        if (textToStore) {
+            localStorage.setItem('myStoredText', textToStore);
+        }
+    };
+</script>
 
-<input type="button" value="Store Text" onClick="{
-   localStorage.setItem('myStoredText', document.getElementById('myText1').value)
-   alert(document.getElementById('myText1').value + ' \nHas been stored')
-   document.getElementById('myText1').value = ''
-}">
-
-<input type="button" value="Retrieve Text" onClick="{
-   document.getElementById('myText1').value = localStorage.getItem('myStoredText')
-}"> 
-
-
-
+</body>
+</html>
